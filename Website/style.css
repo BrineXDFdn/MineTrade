@@ -1,0 +1,48 @@
+/* style.css */
+
+/* Reset some basics */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #eee;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+a {
+  color: #00ccff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #66d9ff;
+  text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+/* Layout for pages */
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+  font-size: 1.1rem;
+}
+
+/* Top bar style (black instead of gray) */
+.top-bar {
+  background: #000; /* changed from #777 to black */
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
