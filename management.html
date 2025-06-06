@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Management - MineTrade Interactive</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .back-arrow {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: #eee;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    .back-arrow:hover {
+      color: #00ccff;
+    }
+
+    .back-arrow svg {
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+    }
+
+    .back-arrow:hover svg {
+      transform: translateX(-6px);
+    }
+
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: #eee;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #00ccff;
+      margin-bottom: 15px;
+    }
+
+    .profile-title {
+      color: #00ccff;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .profile-detail {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin: 5px 0;
+    }
+
+    .discord-id {
+      font-family: monospace;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back to Home
+    </a>
+  </header>
+
+  <main>
+    <h1>Our Management Team</h1>
+    <div class="team-container">
+      <!-- Example profile -->
+      <div class="profile-card">
+        <img src="Images/jake.png" alt="CEO" class="profile-image" />
+        <h2 class="profile-title">Chief Executive Officer</h2>
+        <div class="profile-detail">Name: <strong>IronBrine</strong></div>
+        <div class="profile-detail">Age: <strong>22</strong></div>
+        <div class="profile-detail">Discord: <span class="discord-id">@iron_brine</span></div>
+        <p class="profile-detail">"Meet Jake The Chief Executive Officer Of MineTrade Interactive."</p>
+      </div>
+
+      <!-- Duplicate and modify this block for each team member -->
+      <div class="profile-card">
+        <img src="Images/FearlessBrine.jpg" alt="COO" class="profile-image" />
+        <h2 class="profile-title">Chief Operating Officer</h2>
+        <div class="profile-detail">Name: <strong>FearlessBrine</strong></div>
+        <div class="profile-detail">Age: <strong>?</strong></div>
+        <div class="profile-detail">Discord: <span class="discord-id">@fearlessbrine</span></div>
+        <p class="profile-detail">"Always optimizing the operations."</p>
+      </div>
+
+      <!-- Add more team members similarly -->
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/100" alt="Studio Director" class="profile-image" />
+        <h2 class="profile-title">Studio Director</h2>
+        <div class="profile-detail">Name: <strong>_</strong></div>
+        <div class="profile-detail">Age: <strong>_</strong></div>
+        <div class="profile-detail">Discord: <span class="discord-id">_#0000</span></div>
+        <p class="profile-detail">"Driven by creativity and team spirit."</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/100" alt="Head of Publishing" class="profile-image" />
+        <h2 class="profile-title">Head of Publishing</h2>
+        <div class="profile-detail">Name: <strong>_</strong></div>
+        <div class="profile-detail">Age: <strong>_</strong></div>
+        <div class="profile-detail">Discord: <span class="discord-id">_#0000</span></div>
+        <p class="profile-detail">"Connecting games to the world."</p>
+      </div>
+
+      <div class="profile-card">
+        <img src="https://via.placeholder.com/100" alt="Lead Designer" class="profile-image" />
+        <h2 class="profile-title">Lead Designer</h2>
+        <div class="profile-detail">Name: <strong>_</strong></div>
+        <div class="profile-detail">Age: <strong>_</strong></div>
+        <div class="profile-detail">Discord: <span class="discord-id">_#0000</span></div>
+        <p class="profile-detail">"Designing with passion and precision."</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
