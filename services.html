@@ -5,50 +5,192 @@
   <title>Services - MineTrade Interactive</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Back arrow container */
-    .back-arrow {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      text-decoration: none;
-      color: #eee;
-      font-weight: bold;
-      font-size: 18px;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-    .back-arrow:hover {
-      color: #00ccff;
+    /* Additional styles for expand/collapse */
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #222;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 0;
+      overflow: hidden;
     }
 
-    /* Arrow SVG */
-    .back-arrow svg {
-      width: 28px;
-      height: 28px;
-      margin-right: 10px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
+    .section-header {
+      cursor: pointer;
+      padding: 15px 20px;
+      font-weight: bold;
+      background: #111;
+      color: #00ccff;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.3rem;
     }
-    .back-arrow:hover svg {
-      transform: translateX(-6px);
+
+    .section-header:hover {
+      background: #222;
+    }
+
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .section.open .section-content {
+      max-height: 2000px; /* large enough to show content */
+      padding: 15px 20px 20px;
+    }
+
+    /* Arrow icon */
+    .arrow {
+      transition: transform 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .section.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 70px auto 40px; /* space for fixed top bar */
+      padding: 0 20px;
+      color: #eee;
     }
   </style>
 </head>
 <body>
+
   <header class="top-bar">
-    <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <!-- More detailed arrow SVG -->
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Home
+    <a href="index.html" class="back-arrow" aria-label="Back to Home">
+      <!-- Your back arrow svg or icon comes from style.css -->
+      ← Back to Home
     </a>
   </header>
 
   <main>
-    <h1>Services</h1>
-    <p>Welcome to MineTrade Interactive’s Services page. Here you’ll find our End User License Agreements, Terms of Service, Contracts, and more.</p>
-    <p>— You can add your detailed legal documents and policies here later.</p>
+    <h1>Services & Policies</h1>
+
+    <section class="section" id="terms">
+      <div class="section-header" tabindex="0" aria-expanded="false" aria-controls="terms-content">
+        Terms of Service
+        <span class="arrow">▶</span>
+      </div>
+      <div class="section-content" id="terms-content" hidden>
+        <p><strong>Effective Date: June 7, 2025</strong></p>
+        <p>Welcome to MineTrade Interactive! These Terms of Service (“Terms”) govern your use of our gaming websites, applications, and services (collectively, the “Services”). By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, please do not use our Services.</p>
+        <h3>1. Acceptance of Terms</h3>
+        <p>By accessing or using MineTrade Interactive’s Services, you agree to these Terms. If you do not agree, please do not use our Services.</p>
+        <h3>2. Use of Services</h3>
+        <ul>
+          <li>You agree to use the Services only for lawful purposes.</li>
+          <li>You will not engage in any activity that harms, disrupts, or interferes with the Services or other users.</li>
+        </ul>
+        <h3>3. Intellectual Property</h3>
+        <ul>
+          <li>All content, including software, graphics, logos, and trademarks, are owned by MineTrade Interactive or licensed to us.</li>
+          <li>You may not copy, distribute, modify, or create derivative works from any content without prior written permission.</li>
+        </ul>
+        <h3>4. In-Game Purchases</h3>
+        <p>Currently, we do not offer any in-game purchases or virtual currency.</p>
+        <h3>5. User Conduct</h3>
+        <ul>
+          <li>Harass, threaten, or harm other users.</li>
+          <li>Use cheats, hacks, or unauthorized third-party software.</li>
+          <li>Engage in fraudulent, deceptive, or illegal activities.</li>
+        </ul>
+        <h3>6. Disclaimers and Limitation of Liability</h3>
+        <ul>
+          <li>The Services are provided “as is,” without warranties of any kind, either express or implied.</li>
+          <li>MineTrade Interactive is not liable for any damages arising from your use or inability to use the Services.</li>
+          <li>We do not guarantee uninterrupted or error-free operation of the Services.</li>
+        </ul>
+        <h3>7. Changes to Terms</h3>
+        <p>MineTrade Interactive may update these Terms at any time. We will post the updated Terms on our website. Continued use of the Services after changes means you accept the new Terms.</p>
+        <h3>8. Governing Law</h3>
+        <p>These Terms are governed by the laws of the jurisdiction in which MineTrade Interactive is incorporated, without regard to conflict of law principles.</p>
+        <h3>9. Contact Us</h3>
+        <p>If you have any questions or concerns regarding these Terms, please contact us at: [support will be added soon]</p>
+      </div>
+    </section>
+
+    <section class="section" id="eula">
+      <div class="section-header" tabindex="0" aria-expanded="false" aria-controls="eula-content">
+        End User License Agreement (EULA)
+        <span class="arrow">▶</span>
+      </div>
+      <div class="section-content" id="eula-content" hidden>
+        <p><strong>Effective Date: June 7, 2025</strong></p>
+        <p>This End User License Agreement ("EULA") governs your use of MineTrade Interactive's software and games. By installing or using the software, you agree to the terms below:</p>
+        <h3>License Grant</h3>
+        <p>We grant you a limited, non-exclusive, non-transferable license to use the software for personal, non-commercial purposes.</p>
+        <h3>Restrictions</h3>
+        <ul>
+          <li>You may not reverse engineer, decompile, or modify the software.</li>
+          <li>You may not distribute or sublicense the software.</li>
+          <li>You may not use the software for any unlawful purposes.</li>
+        </ul>
+        <h3>Termination</h3>
+        <p>We may terminate this license if you violate any terms. Upon termination, you must uninstall the software immediately.</p>
+        <h3>Limitation of Liability</h3>
+        <p>MineTrade Interactive is not liable for damages resulting from use or inability to use the software.</p>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="section-header" tabindex="0" aria-expanded="false" aria-controls="privacy-content">
+        Privacy Policy
+        <span class="arrow">▶</span>
+      </div>
+      <div class="section-content" id="privacy-content" hidden>
+        <p><strong>Effective Date: June 7, 2025</strong></p>
+        <p>Your privacy is important to us. This policy explains how we collect, use, and protect your information when you use our services.</p>
+        <h3>Information Collection</h3>
+        <ul>
+          <li>We collect information you provide directly and automatically through usage data.</li>
+          <li>We do not sell your personal data to third parties.</li>
+        </ul>
+        <h3>Use of Information</h3>
+        <ul>
+          <li>To provide and improve our services.</li>
+          <li>To communicate with you.</li>
+          <li>To comply with legal obligations.</li>
+        </ul>
+        <h3>Security</h3>
+        <p>We implement reasonable measures to protect your information.</p>
+        <h3>Changes to Policy</h3>
+        <p>We may update this policy periodically. Continued use of our services indicates acceptance of changes.</p>
+      </div>
+    </section>
+
   </main>
+
+  <script>
+    // Expand/collapse functionality for sections
+    document.querySelectorAll('.section-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const section = header.parentElement;
+        const content = section.querySelector('.section-content');
+        const isOpen = section.classList.toggle('open');
+        content.hidden = !isOpen;
+        header.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Keyboard accessibility (Enter and Space)
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
