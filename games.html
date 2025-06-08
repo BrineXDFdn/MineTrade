@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Games - MineTrade Interactive</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -13,35 +14,70 @@
       text-decoration: none;
       color: #eee;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1rem;
       transition: color 0.3s ease;
       user-select: none;
     }
+
     .back-arrow:hover {
       color: #00ccff;
     }
 
     /* Arrow SVG */
     .back-arrow svg {
-      width: 28px;
-      height: 28px;
-      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
       fill: currentColor;
       transition: transform 0.3s ease;
     }
+
     .back-arrow:hover svg {
       transform: translateX(-6px);
     }
 
     main {
       max-width: 900px;
-      margin: 100px auto;
+      margin: 80px auto 40px;
       padding: 0 20px;
       text-align: center;
       font-size: 1.5rem;
       color: #ccc;
       font-weight: bold;
       user-select: none;
+    }
+
+    /* Future game grid placeholder (optional) */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .game-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 20px;
+      color: #eee;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        font-size: 1.2rem;
+        padding: 0 15px;
+      }
+
+      .back-arrow {
+        font-size: 0.95rem;
+      }
+
+      .back-arrow svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+      }
     }
   </style>
 </head>
@@ -56,7 +92,18 @@
   </header>
 
   <main>
-    Games will be Released Soon
+    <section>
+      Games will be Released Soon
+    </section>
+
+    <!-- Future game listing -->
+    <!--
+    <section class="games-grid">
+      <div class="game-card">Game 1</div>
+      <div class="game-card">Game 2</div>
+      <div class="game-card">Game 3</div>
+    </section>
+    -->
   </main>
 </body>
 </html>
