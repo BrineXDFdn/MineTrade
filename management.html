@@ -2,14 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Management - MineTrade Interactive</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     .team-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 30px;
       margin-top: 40px;
+      padding: 0 20px 60px;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .profile-card {
@@ -21,13 +35,15 @@
       color: #eee;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
       user-select: none;
+      outline-offset: 4px;
     }
 
-    .profile-card:hover {
+    .profile-card:hover,
+    .profile-card:focus {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      box-shadow: 0 6px 14px rgba(0, 204, 255, 0.6);
+      outline: none;
     }
 
     .profile-image {
@@ -38,12 +54,14 @@
       border: 2px solid #00ccff;
       margin-bottom: 15px;
       pointer-events: none;
+      user-select: none;
     }
 
     .profile-title {
       color: #00ccff;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-top: 10px;
+      margin-bottom: 10px;
       pointer-events: none;
     }
 
@@ -55,15 +73,14 @@
     }
 
     .discord-id {
-      font-family: monospace;
+      font-family: monospace, monospace;
       color: #aaa;
     }
 
-    /* Expanded details */
     .profile-expanded {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease;
+      transition: max-height 0.35s ease, padding 0.35s ease;
       background: rgba(0, 204, 255, 0.1);
       border-radius: 0 0 12px 12px;
       padding: 0 20px;
@@ -74,14 +91,51 @@
 
     .profile-expanded.open {
       max-height: 400px; /* enough for content */
-      padding: 15px 20px 20px 20px;
+      padding: 15px 20px 20px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #00ccff;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      .profile-card {
+        padding: 15px;
+      }
+
+      .profile-title {
+        font-size: 1.1rem;
+      }
+
+      .profile-image {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+      }
+
+      main {
+        margin: 60px 10px 30px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28">
         <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
       </svg>
       Back to Home
@@ -91,7 +145,6 @@
   <main>
     <h1>Our Management Team</h1>
     <div class="team-container">
-
       <div class="profile-card" tabindex="0" aria-expanded="false" aria-controls="profile1-details" id="profile1">
         <img src="Images/jake.png" alt="Jake CEO" class="profile-image" />
         <h2 class="profile-title">Chief Executive Officer</h2>
@@ -108,7 +161,7 @@
       <div class="profile-card" tabindex="0" aria-expanded="false" aria-controls="profile2-details" id="profile2">
         <img src="Images/FearlessBrine.jpg" alt="Jason COO" class="profile-image" />
         <h2 class="profile-title">Chief Operating Officer</h2>
-        <div class="profile-detail">Name: <strong>FearlessBrine</strong></div>
+        <div class="profile-detail">Name: <strong>Jason</strong></div>
         <div class="profile-detail">Age: <strong>?</strong></div>
         <div class="profile-detail">Discord: <span class="discord-id">@fearlessbrine</span></div>
         <p class="profile-detail">"Always optimizing the operations."</p>
@@ -118,13 +171,11 @@
         </div>
       </div>
 
-      <!-- Add more profiles similarly -->
-      
+      <!-- Add more profiles as needed -->
     </div>
   </main>
 
   <script>
-    // Select all profile cards
     const profiles = document.querySelectorAll('.profile-card');
 
     profiles.forEach(profile => {
@@ -132,7 +183,7 @@
         const expanded = profile.querySelector('.profile-expanded');
         const isOpen = expanded.classList.contains('open');
 
-        // Optionally close all others first:
+        // Close all others
         profiles.forEach(p => {
           const exp = p.querySelector('.profile-expanded');
           exp.classList.remove('open');
@@ -144,12 +195,10 @@
           expanded.classList.add('open');
           profile.setAttribute('aria-expanded', 'true');
           expanded.setAttribute('aria-hidden', 'false');
-          // Scroll into view smoothly
           expanded.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
 
-      // Accessibility: also toggle on Enter/Space keys when focused
       profile.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
