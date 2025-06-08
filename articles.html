@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Articles - MineTrade Interactive</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -13,31 +14,39 @@
       text-decoration: none;
       color: #eee;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1rem;
       transition: color 0.3s ease;
       user-select: none;
     }
+
     .back-arrow:hover {
       color: #00ccff;
     }
 
     /* Arrow SVG */
     .back-arrow svg {
-      width: 28px;
-      height: 28px;
-      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
       fill: currentColor;
       transition: transform 0.3s ease;
     }
+
     .back-arrow:hover svg {
       transform: translateX(-6px);
     }
 
     main {
       max-width: 900px;
-      margin: 30px auto;
+      margin: 80px auto 40px;
       padding: 0 20px;
       color: #eee;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #fff;
     }
 
     .article-list {
@@ -56,19 +65,48 @@
     article h2 {
       margin-top: 0;
       color: #00ccff;
+      font-size: 1.5rem;
     }
 
     article time {
       font-size: 0.9rem;
-      color: #666;
+      color: #999;
       display: block;
       margin-bottom: 10px;
     }
 
     article p {
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.6;
       color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 0 15px;
+      }
+
+      .back-arrow {
+        font-size: 0.95rem;
+      }
+
+      .back-arrow svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      article h2 {
+        font-size: 1.25rem;
+      }
+
+      article p {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
