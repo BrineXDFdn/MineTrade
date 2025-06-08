@@ -12,25 +12,30 @@ body {
   color: #eee;
   min-height: 100vh;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Links */
 a {
   color: #00ccff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: #66d9ff;
   text-decoration: underline;
+  outline: none;
 }
 
 /* Headings */
 h1, h2, h3 {
   margin-top: 0;
+  line-height: 1.2;
 }
 
-/* Layout for pages */
+/* Main content layout */
 main {
   max-width: 900px;
   margin: 30px auto;
@@ -40,9 +45,39 @@ main {
 
 /* Top bar style (black instead of gray) */
 .top-bar {
-  background: #000; /* changed from #777 to black */
+  background: #000;
   padding: 12px 20px;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 0 15px;
+    margin: 20px auto;
+  }
+
+  .top-bar {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
 }
