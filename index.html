@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Home - MineTrade Interactive</title>
-  <link rel="icon" href="image/webapp.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <title>Home - MineTrade Interactive</title>
   <style>
+    /* Reset */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
+    html, body {
       font-family: Arial, sans-serif;
       background: #111;
       color: #eee;
@@ -22,32 +21,63 @@
       flex-direction: column;
     }
 
+    /* Top bar */
     .top-bar {
       background-color: #000;
       height: 50px;
       display: flex;
       align-items: center;
+      justify-content: space-between; /* space between hamburger and button */
       padding: 0 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
     }
 
+    /* Hamburger */
     #hamburgerBtn {
       font-size: 26px;
       background: none;
       border: none;
       color: #eee;
       cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease;
     }
+
+    #hamburgerBtn.open {
+      transform: rotate(90deg);
+    }
+
     #hamburgerBtn:focus {
       outline: 2px solid #00ccff;
       outline-offset: 2px;
     }
 
+    /* Apply Button (emoji) */
+    #applyBtn {
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: #eee;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    #applyBtn:hover {
+      color: #00ccff;
+    }
+
+    #applyBtn:focus {
+      outline: 2px solid #00ccff;
+      outline-offset: 2px;
+    }
+
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -55,14 +85,15 @@
       width: 260px;
       height: 100vh;
       background: rgba(0, 0, 0, 0.95);
-      box-shadow: 3px 0 8px rgba(0,0,0,0.8);
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.8);
       display: flex;
       flex-direction: column;
       padding: 20px;
-      gap: 25px;
+      gap: 20px;
       transition: left 0.3s ease;
       z-index: 1100;
     }
+
     .sidebar.open {
       left: 0;
     }
@@ -74,7 +105,9 @@
       font-size: 28px;
       color: #eee;
       cursor: pointer;
+      line-height: 1;
     }
+
     #closeBtn:focus {
       outline: 2px solid #00ccff;
       outline-offset: 2px;
@@ -85,10 +118,12 @@
       font-weight: bold;
       text-decoration: none;
       font-size: 1.2rem;
-      padding: 8px 12px;
+      padding: 12px;
       border-radius: 6px;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      transition: background 0.25s ease, color 0.25s ease;
+      user-select: none;
     }
+
     .sidebar-link:hover,
     .sidebar-link:focus {
       background-color: #00ccff;
@@ -96,6 +131,7 @@
       outline: none;
     }
 
+    /* Main content */
     main {
       flex-grow: 1;
       margin-top: 50px;
@@ -108,46 +144,26 @@
     }
 
     main h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: #00ccff;
-      text-shadow: 0 0 6px #00ccff99;
       user-select: none;
+      text-shadow: 0 0 6px #00ccff99;
     }
 
+    /* Hide non-open sidebar from screen readers */
     .sidebar:not(.open) {
       pointer-events: none;
     }
 
-    @media (max-width: 768px) {
-      main h1 {
-        font-size: 2rem;
-      }
+    /* Media queries for small screens */
+    @media (max-width: 600px) {
       .sidebar-link {
         font-size: 1rem;
-        padding: 6px 10px;
+        padding: 10px;
       }
-      .top-bar {
-        height: 45px;
-        padding: 0 15px;
-      }
-      #hamburgerBtn {
-        font-size: 22px;
-      }
-      #closeBtn {
-        font-size: 24px;
-      }
-    }
 
-    @media (max-width: 480px) {
       main h1 {
-        font-size: 1.6rem;
-      }
-      .sidebar-link {
-        font-size: 0.95rem;
-      }
-      .sidebar {
-        width: 220px;
-        padding: 15px;
+        font-size: 2rem;
       }
     }
   </style>
@@ -156,9 +172,10 @@
 
   <header class="top-bar">
     <button id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+    <button id="applyBtn" aria-label="Apply to Work" title="Apply to Work">📝</button>
   </header>
 
-  <nav id="sidebar" class="sidebar" aria-label="Main navigation">
+  <nav id="sidebar" class="sidebar" aria-label="Main navigation" role="navigation">
     <button id="closeBtn" aria-label="Close menu">✕</button>
     <a href="index.html" class="sidebar-link">Home</a>
     <a href="services.html" class="sidebar-link">Services</a>
@@ -168,33 +185,64 @@
   </nav>
 
   <main>
-    <h1>Welcome To the MineTrade Interactive</h1>
+    <h1>Welcome To MineTrade Interactive</h1>
   </main>
 
   <script>
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeBtn = document.getElementById('closeBtn');
     const sidebar = document.getElementById('sidebar');
+    const applyBtn = document.getElementById('applyBtn');
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
+    // Open sidebar
     hamburgerBtn.addEventListener('click', () => {
       sidebar.classList.add('open');
+      hamburgerBtn.classList.add('open');
       hamburgerBtn.setAttribute('aria-expanded', 'true');
-      const firstLink = sidebar.querySelector('.sidebar-link');
+      document.body.style.overflow = 'hidden';
+      const firstLink = sidebar.querySelector(focusableElements);
       if (firstLink) firstLink.focus();
     });
 
-    closeBtn.addEventListener('click', () => {
+    // Close sidebar
+    function closeSidebar() {
       sidebar.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
       hamburgerBtn.focus();
-    });
+    }
 
+    closeBtn.addEventListener('click', closeSidebar);
+
+    // Escape closes sidebar
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        hamburgerBtn.focus();
+        closeSidebar();
       }
+    });
+
+    // Focus trap inside sidebar
+    document.addEventListener('keydown', (e) => {
+      if (!sidebar.classList.contains('open')) return;
+      const focusables = sidebar.querySelectorAll(focusableElements);
+      if (e.key === 'Tab' && focusables.length > 0) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Apply button click - open link in new tab
+    applyBtn.addEventListener('click', () => {
+      window.open('https://forms.gle/FRXxQUeRDhtoQRZG6', '_blank', 'noopener');
     });
   </script>
 
