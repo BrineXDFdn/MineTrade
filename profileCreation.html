@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Creation - MineTrade Interactive</title>
+  <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Background image and overlay */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      color: #eee;
+    }
+
+    /* Dark overlay for contrast */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    /* Place header on top */
+    header.top-bar {
+      position: relative;
+      z-index: 10;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .auth-box {
+      background: rgba(34, 34, 34, 0.85);
+      padding: 35px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      color: #eee;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .auth-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #111;
+      color: #eee;
+      font-size: 1rem;
+    }
+
+    .auth-box button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      background-color: #00ccff;
+      color: #111;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .auth-box button:hover {
+      background-color: #00aacc;
+    }
+
+    .toggle-link {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #ccc;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .toggle-link:hover {
+      color: #00ccff;
+      text-decoration: underline;
+    }
+
+    .message {
+      margin-top: 12px;
+      color: #f55;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Back arrow link style */
+    .back-arrow {
+      color: #00ccff;
+      font-weight: bold;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .back-arrow:hover,
+    .back-arrow:focus {
+      color: #66d9ff;
+      text-decoration: underline;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <a href="index.html" class="back-arrow" aria-label="Back to Home">← Back to Home</a>
+  </header>
+
+  <main>
+    <div class="auth-box" id="authBox">
+      <h1 id="formTitle">Sign Up</h1>
+
+      <div id="signupForm">
+        <input type="text" id="signupName" placeholder="Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button onclick="showMessage()">Sign Up</button>
+        <div class="toggle-link" onclick="toggleForm()">Already have an account? Login</div>
+      </div>
+
+      <div id="loginForm" style="display: none;">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button onclick="showMessage()">Login</button>
+        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Sign Up</div>
+      </div>
+
+      <div id="message" class="message">We are Sorry Because Properly Implementing this feature is not possible for us.</div>
+    </div>
+  </main>
+
+  <script>
+    function toggleForm() {
+      const signupForm = document.getElementById('signupForm');
+      const loginForm = document.getElementById('loginForm');
+      const formTitle = document.getElementById('formTitle');
+      const message = document.getElementById('message');
+      message.style.display = 'none'; // Hide message on toggle
+      if (signupForm.style.display === 'none') {
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        formTitle.textContent = 'Sign Up';
+      } else {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        formTitle.textContent = 'Login';
+      }
+    }
+
+    function showMessage() {
+      document.getElementById('message').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
