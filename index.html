@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home - MineTrade Interactive</title>
+  <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
     /* Reset */
     * {
@@ -14,20 +15,31 @@
 
     html, body {
       font-family: Arial, sans-serif;
-      background: #111;
       color: #eee;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: url('https://images.unsplash.com/photo-1651012998667-2c779fee76f8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Overlay to darken the background for better readability */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 0;
     }
 
     /* Top bar */
     .top-bar {
-      background-color: #000;
+      background-color: rgba(0, 0, 0, 0.85);
       height: 50px;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* space between hamburger and button */
+      justify-content: space-between;
       padding: 0 20px;
       position: fixed;
       top: 0;
@@ -37,44 +49,33 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
     }
 
-    /* Hamburger */
-    #hamburgerBtn {
-      font-size: 26px;
+    .left-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .top-button {
+      font-size: 24px;
       background: none;
       border: none;
       color: #eee;
       cursor: pointer;
       user-select: none;
-      transition: transform 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .top-button:hover {
+      color: #00ccff;
+    }
+
+    .top-button:focus {
+      outline: 2px solid #00ccff;
+      outline-offset: 2px;
     }
 
     #hamburgerBtn.open {
       transform: rotate(90deg);
-    }
-
-    #hamburgerBtn:focus {
-      outline: 2px solid #00ccff;
-      outline-offset: 2px;
-    }
-
-    /* Apply Button (emoji) */
-    #applyBtn {
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: #eee;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-
-    #applyBtn:hover {
-      color: #00ccff;
-    }
-
-    #applyBtn:focus {
-      outline: 2px solid #00ccff;
-      outline-offset: 2px;
     }
 
     /* Sidebar */
@@ -141,28 +142,38 @@
       height: calc(100vh - 50px);
       padding: 20px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
-    main h1 {
+    .welcome-box {
+      background: rgba(34, 34, 34, 0.85);
+      padding: 100px 60px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 204, 255, 0.3);
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    .welcome-box h1 {
       font-size: 2.5rem;
       color: #00ccff;
       user-select: none;
       text-shadow: 0 0 6px #00ccff99;
     }
 
-    /* Hide non-open sidebar from screen readers */
-    .sidebar:not(.open) {
-      pointer-events: none;
-    }
-
-    /* Media queries for small screens */
+    /* Media queries for responsiveness */
     @media (max-width: 600px) {
       .sidebar-link {
         font-size: 1rem;
         padding: 10px;
       }
 
-      main h1 {
+      .welcome-box {
+        padding: 60px 30px;
+      }
+
+      .welcome-box h1 {
         font-size: 2rem;
       }
     }
@@ -171,8 +182,13 @@
 <body>
 
   <header class="top-bar">
-    <button id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
-    <button id="applyBtn" aria-label="Apply to Work" title="Apply to Work">📝</button>
+    <div class="left-buttons">
+      <button id="hamburgerBtn" class="top-button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+    </div>
+    <div class="left-buttons">
+      <button id="profileBtn" class="top-button" aria-label="Create Profile" title="Create Profile">👤</button>
+      <button id="applyBtn" class="top-button" aria-label="Apply to Work" title="Apply to Work">📝</button>
+    </div>
   </header>
 
   <nav id="sidebar" class="sidebar" aria-label="Main navigation" role="navigation">
@@ -185,7 +201,9 @@
   </nav>
 
   <main>
-    <h1>Welcome To MineTrade Interactive</h1>
+    <div class="welcome-box">
+      <h1>Welcome To MineTrade Interactive</h1>
+    </div>
   </main>
 
   <script>
@@ -193,9 +211,9 @@
     const closeBtn = document.getElementById('closeBtn');
     const sidebar = document.getElementById('sidebar');
     const applyBtn = document.getElementById('applyBtn');
+    const profileBtn = document.getElementById('profileBtn');
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-    // Open sidebar
     hamburgerBtn.addEventListener('click', () => {
       sidebar.classList.add('open');
       hamburgerBtn.classList.add('open');
@@ -205,7 +223,6 @@
       if (firstLink) firstLink.focus();
     });
 
-    // Close sidebar
     function closeSidebar() {
       sidebar.classList.remove('open');
       hamburgerBtn.classList.remove('open');
@@ -216,15 +233,10 @@
 
     closeBtn.addEventListener('click', closeSidebar);
 
-    // Escape closes sidebar
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && sidebar.classList.contains('open')) {
         closeSidebar();
       }
-    });
-
-    // Focus trap inside sidebar
-    document.addEventListener('keydown', (e) => {
       if (!sidebar.classList.contains('open')) return;
       const focusables = sidebar.querySelectorAll(focusableElements);
       if (e.key === 'Tab' && focusables.length > 0) {
@@ -240,9 +252,12 @@
       }
     });
 
-    // Apply button click - open link in new tab
     applyBtn.addEventListener('click', () => {
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSdVuXR9KSGuwulsOGJY3BpuydPVFIVN4BqbssdGwFw-kpM8xg/viewform?usp=dialog', '_blank', 'noopener');
+      window.open('https://forms.gle/FRXxQUeRDhtoQRZG6', '_blank', 'noopener');
+    });
+
+    profileBtn.addEventListener('click', () => {
+      window.location.href = 'profileCreation.html';
     });
   </script>
 
