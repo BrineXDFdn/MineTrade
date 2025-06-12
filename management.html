@@ -39,12 +39,12 @@
     }
 
     .profile-card {
-      background: rgba(255, 255, 255, 0.05);
+      background: #121212; /* solid dark background */
       border: 1px solid #222;
       border-radius: 12px;
       padding: 20px;
       text-align: center;
-      color: #a0cfe8; /* Changed to softer blue-gray */
+      color: #a0cfe8; /* softer blue-gray text except titles */
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
@@ -70,7 +70,7 @@
     }
 
     .profile-title {
-      color: #00ccff; /* Keep bright cyan */
+      color: #00ccff; /* keep bright cyan */
       font-size: 1.3rem;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -79,14 +79,14 @@
 
     .profile-detail {
       font-size: 0.95rem;
-      color: #121212; /* near-black for better contrast */
+      color: #eee; /* bright text for readability */
       margin: 5px 0;
       pointer-events: none;
     }
 
     .discord-id {
       font-family: monospace, monospace;
-      color: #121212; /* near-black for better contrast */
+      color: #eee; /* bright text */
     }
 
     .profile-expanded {
@@ -96,7 +96,7 @@
       background: rgba(0, 204, 255, 0.1);
       border-radius: 0 0 12px 12px;
       padding: 0 20px;
-      color: #000000; /* match profile-detail */
+      color: #eee; /* bright text */
       font-size: 0.9rem;
       line-height: 1.4;
     }
