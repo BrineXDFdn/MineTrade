@@ -78,6 +78,27 @@
       text-decoration: underline;
     }
 
+    /* Discord button style */
+    .discord-btn {
+      cursor: pointer;
+      padding: 8px 16px;
+      background: #5865F2; /* Discord blurple */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-left: 8px;
+    }
+
+    .discord-btn:hover,
+    .discord-btn:focus {
+      background: #4752c4;
+      outline: none;
+    }
+
     @media (max-width: 600px) {
       main {
         margin: 60px auto 30px;
@@ -100,6 +121,11 @@
 
       .back-arrow {
         font-size: 0.95rem;
+      }
+
+      .discord-btn {
+        font-size: 0.9rem;
+        padding: 7px 14px;
       }
     }
   </style>
@@ -152,7 +178,8 @@
         <h3>8. Governing Law</h3>
         <p>Terms governed by the laws of our jurisdiction.</p>
         <h3>9. Contact Us</h3>
-        <p>If you have questions, contact us: [support will be added soon]</p>
+        <p>If you have questions, contact us:</p>
+        <button class="discord-btn" onclick="window.open('https://discord.gg/CrzR7NTy3G', '_blank', 'noopener')">Join Discord</button>
       </div>
     </section>
 
