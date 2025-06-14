@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
-    /* Back arrow container */
+    body {
+      background: #111;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
     .back-arrow {
       display: flex;
       align-items: center;
@@ -18,13 +23,13 @@
       font-size: 1rem;
       transition: color 0.3s ease;
       user-select: none;
+      padding: 16px 20px;
     }
 
     .back-arrow:hover {
       color: #00ccff;
     }
 
-    /* Arrow SVG */
     .back-arrow svg {
       width: 24px;
       height: 24px;
@@ -39,45 +44,58 @@
 
     main {
       max-width: 900px;
-      margin: 80px auto 40px;
+      margin: 60px auto 40px;
       padding: 0 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      color: #ccc;
-      font-weight: bold;
-      user-select: none;
-    }
-
-    /* Future game grid placeholder (optional) */
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .game-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 20px;
       color: #eee;
     }
 
+    .game-profile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .game-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .toggle-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .expanded .toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    .game-content {
+      margin-top: 15px;
+      display: none;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .expanded .game-content {
+      display: block;
+    }
+
     @media (max-width: 600px) {
-      main {
+      .game-title {
         font-size: 1.2rem;
-        padding: 0 15px;
       }
-
-      .back-arrow {
-        font-size: 0.95rem;
-      }
-
-      .back-arrow svg {
-        width: 20px;
-        height: 20px;
-        margin-right: 6px;
+      .toggle-icon {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -93,18 +111,24 @@
   </header>
 
   <main>
-    <section>
-      Games will be Released Soon
-    </section>
-
-    <!-- Future game listing -->
-    <!--
-    <section class="games-grid">
-      <div class="game-card">Game 1</div>
-      <div class="game-card">Game 2</div>
-      <div class="game-card">Game 3</div>
-    </section>
-    -->
+    <div class="game-profile" id="jumpster">
+      <div class="game-header" onclick="toggleProfile('jumpster')">
+        <div class="game-title">Jumpster Quest</div>
+        <div class="toggle-icon">&#9654;</div>
+      </div>
+      <div class="game-content">
+        <p><strong>About:</strong> Jumpster Quest is a thrilling 2D platformer adventure where you guide Jumpster across challenging levels filled with traps, enemies, and secrets. Designed for both casual players and platformer enthusiasts.</p>
+        <p><strong>Release Date:</strong> Coming Soon</p>
+        <p><strong>Status:</strong> In Development</p>
+      </div>
+    </div>
   </main>
+
+  <script>
+    function toggleProfile(id) {
+      const profile = document.getElementById(id);
+      profile.classList.toggle('expanded');
+    }
+  </script>
 </body>
 </html>
