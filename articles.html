@@ -82,6 +82,20 @@
       color: #ccc;
     }
 
+    .read-more {
+      margin-top: 15px;
+      display: inline-block;
+      color: #00ccff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: #0099cc;
+      text-decoration: underline;
+    }
+
     @media (max-width: 600px) {
       main {
         padding: 0 15px;
@@ -124,6 +138,20 @@
   <main>
     <h1>Official Articles</h1>
     <section class="article-list">
+
+      <!-- New article pinned on top -->
+      <article>
+        <h2>Jumpster Quest Update: New Features Coming Soon</h2>
+        <time datetime="2025-06-14">June 14, 2025</time>
+        <p>
+          We’re thrilled to announce new upcoming updates for Jumpster Quest! The team is currently working
+          hard to add exciting new levels, improved enemy AI, and enhanced graphics. Stay tuned for
+          the pre-release demo scheduled for July 2025. Your adventure as Jumpster is about to get even better!
+        </p>
+        <a href="https://brinexd65.github.io/MineTrade/games.html" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+      </article>
+
+      <!-- Older article below -->
       <article>
         <h2>Welcome to MineTrade Interactive</h2>
         <time datetime="2025-06-05">June 5, 2025</time>
@@ -133,6 +161,7 @@
           game releases, news, and insights right here!
         </p>
       </article>
+
     </section>
   </main>
 </body>
