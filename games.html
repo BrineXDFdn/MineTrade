@@ -4,159 +4,101 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Games - MineTrade Interactive</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
-    body {
-      background: #111;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Reset & base */
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #eee;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 12px 20px;
-      background: #000;
-      border-bottom: 1px solid #222;
+      background: #050505;
+      padding: 16px 24px;
+      border-bottom: 1px solid #111;
+      display: flex;
+      align-items: center;
     }
 
     .back-arrow {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      text-decoration: none;
-      color: #eee;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-
-    .back-arrow:hover {
       color: #00ccff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      user-select: none;
+      transition: color 0.3s ease;
     }
 
     .back-arrow svg {
-      width: 22px;
-      height: 22px;
-      margin-right: 6px;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
       fill: currentColor;
       transition: transform 0.3s ease;
     }
 
+    .back-arrow:hover {
+      color: #33eaff;
+    }
+
     .back-arrow:hover svg {
-      transform: translateX(-5px);
+      transform: translateX(-6px);
     }
 
     main {
-      max-width: 900px;
-      margin: 40px auto;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 0 20px;
+      text-align: center;
     }
 
-    .game-profile {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .game-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .game-header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex: 1;
-    }
-
-    .game-logo {
-      width: 80px;
-      height: 80px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      object-fit: contain;
-      background: #222;
-      border: 1px solid #444;
-    }
-
-    .game-title {
-      font-size: 1.6rem;
-      font-weight: bold;
+    .coming-soon-message {
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: #00ccff;
-    }
-
-    .toggle-icon {
-      font-size: 1.5rem;
-      transition: transform 0.3s ease;
-      margin-left: 12px;
+      font-weight: 700;
+      text-shadow: 0 0 12px #00ccffaa, 0 0 30px #00ccff44;
       user-select: none;
-    }
-
-    .expanded .toggle-icon {
-      transform: rotate(90deg);
-    }
-
-    .game-content {
-      margin-top: 15px;
-      display: none;
-      color: #ccc;
-      line-height: 1.6;
-      padding-left: 96px; /* align with logo width + gap */
-    }
-
-    .expanded .game-content {
-      display: block;
-    }
-
-    .screenshot {
-      margin-top: 15px;
-      border: 1px solid #222;
-      border-radius: 6px;
-      overflow: hidden;
+      opacity: 0;
+      animation: fadeInGlow 2s forwards;
       max-width: 600px;
-      max-height: 338px;
-      box-shadow: 0 0 8px #00ccff66;
+      line-height: 1.2;
     }
 
-    .screenshot img {
-      width: 100%;
-      height: auto;
-      display: block;
+    @keyframes fadeInGlow {
+      to {
+        opacity: 1;
+        text-shadow:
+          0 0 15px #00ccffcc,
+          0 0 30px #00ccffbb,
+          0 0 45px #00ccff99;
+      }
     }
 
-    @media (max-width: 600px) {
-      .game-header {
-        flex-direction: column;
-        align-items: flex-start;
+    @media (max-width: 480px) {
+      .back-arrow {
+        font-size: 1rem;
       }
-      .game-header-left {
-        gap: 12px;
-      }
-      .game-logo {
-        width: 60px;
-        height: 60px;
-      }
-      .game-title {
-        font-size: 1.3rem;
-      }
-      .toggle-icon {
-        font-size: 1.2rem;
-        margin-left: 0;
-        margin-top: 6px;
-      }
-      .game-content {
-        padding-left: 0;
-        margin-top: 10px;
-      }
-      .screenshot {
-        max-width: 100%;
+
+      .coming-soon-message {
+        font-size: 1.8rem;
+        max-width: 90%;
       }
     }
   </style>
@@ -172,31 +114,9 @@
   </header>
 
   <main>
-    <div class="game-profile" id="jumpster" onclick="toggleProfile('jumpster')">
-      <div class="game-header">
-        <div class="game-header-left">
-          <img src="Images/Jumpster-Quest.png" alt="Jumpster Quest Logo" class="game-logo" />
-          <div class="game-title">Jumpster Quest</div>
-        </div>
-        <div class="toggle-icon">&#9654;</div>
-      </div>
-
-      <div class="game-content">
-        <p><strong>Description:</strong> Jumpster Quest is a 2D platformer adventure where you play as Jumpster across challenging levels filled with traps, enemies, and secrets.</p>
-        <p><strong>Release Date:</strong> August 13 2026</p>
-        <p><strong>Status:</strong> Early Production</p>
-        <div class="screenshot">
-          <img src="Images/JumpstepQuest Screenshot.png" alt="Jumpster Quest Screenshot" />
-        </div>
-      </div>
+    <div class="coming-soon-message">
+      Games coming soon 🚀
     </div>
   </main>
-
-  <script>
-    function toggleProfile(id) {
-      const profile = document.getElementById(id);
-      profile.classList.toggle('expanded');
-    }
-  </script>
 </body>
 </html>
