@@ -15,7 +15,7 @@ This is a static website built using plain HTML and CSS. The site includes pages
 
 Styles are contained in `style.css`.
 
-Site Link: https://brinexd65.github.io/MineTrade/
+Site Link: https://brinexdfdn.github.io/MineTrade/
 
 ## Structure
 
