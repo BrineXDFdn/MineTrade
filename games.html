@@ -62,32 +62,55 @@
 
     main {
       flex-grow: 1;
+      padding: 20px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 20px;
-      text-align: center;
+      flex-direction: column; /* Stack game boxes vertically */
+      align-items: center;    /* Center horizontally */
+      gap: 20px;              /* Space between boxes */
     }
 
-    .coming-soon-message {
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      color: #00ccff;
-      font-weight: 700;
-      text-shadow: 0 0 12px #00ccffaa, 0 0 30px #00ccff44;
-      user-select: none;
-      opacity: 0;
+    /* Game box link wrapper */
+    .game-box-link {
+      text-decoration: none;
+      color: inherit;
+      display: block; /* Makes the whole box clickable */
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* Game box style */
+    .game-box {
+      background-color: #111;
+      border: 2px solid #00ccff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px #00ccff44, 0 0 40px #00ccff22;
       animation: fadeInGlow 2s forwards;
-      max-width: 600px;
-      line-height: 1.2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-box h2 {
+      font-size: 1.8rem;
+      color: #00ccff;
+      margin-bottom: 12px;
+    }
+
+    .game-box p {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+    }
+
+    /* Hover effect to make box pop */
+    .game-box-link:hover .game-box {
+      transform: translateY(-4px);
+      box-shadow: 0 0 35px #00ccffcc, 0 0 70px #00ccff88;
     }
 
     @keyframes fadeInGlow {
       to {
         opacity: 1;
-        text-shadow:
-          0 0 15px #00ccffcc,
-          0 0 30px #00ccffbb,
-          0 0 45px #00ccff99;
+        box-shadow: 0 0 30px #00ccffcc, 0 0 60px #00ccff88;
       }
     }
 
@@ -96,9 +119,16 @@
         font-size: 1rem;
       }
 
-      .coming-soon-message {
-        font-size: 1.8rem;
-        max-width: 90%;
+      .game-box {
+        padding: 16px 20px;
+      }
+
+      .game-box h2 {
+        font-size: 1.5rem;
+      }
+
+      .game-box p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -114,9 +144,15 @@
   </header>
 
   <main>
-    <div class="coming-soon-message">
-      Games coming soon 🚀
-    </div>
+    <!-- Clickable game box -->
+    <a href="Games/KickFlare.html" class="game-box-link">
+      <div class="game-box">
+        <h2>KickFlare</h2>
+        <p>Date: September 11, 2025</p>
+      </div>
+    </a>
+
+    <!-- You can add more game boxes here in the future -->
   </main>
 </body>
 </html>
