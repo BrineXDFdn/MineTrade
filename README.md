@@ -13,9 +13,7 @@ This is a static website built using plain HTML and CSS. The site includes pages
 - Services (`services.html`)
 - Images (`Image assets`)
 
-Styles are contained in `style.css`.
 
 Site Link: https://brinexdfdn.github.io/MineTrade/
 
-## Structure
 
