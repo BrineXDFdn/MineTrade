@@ -6,6 +6,7 @@
   <title>news-2</title>
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../Images/favicon.ico" type="image/x-icon" />
+
   <style>
     body {
       background-color: #121212;
@@ -42,7 +43,28 @@
       font-size: 1rem;
       line-height: 1.6;
       color: #ccc;
-      margin-bottom: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .info-btn-wrapper {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .info-btn {
+      display: inline-block;
+      background: #00ccff;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .info-btn:hover {
+      background: #33eaff;
+      transform: translateY(-2px);
     }
 
     .back-arrow {
@@ -75,10 +97,6 @@
     }
 
     @media (max-width: 600px) {
-      main {
-        padding: 0 15px;
-      }
-
       h1 {
         font-size: 1.6rem;
       }
@@ -87,22 +105,19 @@
         font-size: 0.95rem;
       }
 
-      .back-arrow {
+      .info-btn {
+        padding: 10px 22px;
         font-size: 0.95rem;
-      }
-
-      .back-arrow svg {
-        width: 20px;
-        height: 20px;
-        margin-right: 6px;
       }
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <a href="../news.html" class="back-arrow" aria-label="Back to News">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
       </svg>
       Back to News
@@ -110,28 +125,31 @@
   </header>
 
   <main>
-    <h1>🚀 We Just Dropped MineTrade Hub — Your Ultimate Game Launcher Is Here! 🎮</h1>
-    <div class="meta-info">August 1, 2025 | Author: MineTrade Journal Team</div>
+    <h1>🚀 MineTradeInteractive Expands Game Portfolio 🎮</h1>
+    <div class="meta-info">December 29, 2025 | Author: MineTradeInteractive</div>
+
     <article>
-      <p>Yo gamers, listen up! We’re stoked to announce the launch of <strong>MineTrade Hub</strong>, your brand-new go-to launcher that’s about to change how you game forever.</p>
-      <p><strong>Why MineTrade Hub?</strong></p>
-      <p>We get it — juggling different games, endless updates, and messy menus is a total buzzkill. MineTrade Hub is built to fix all that. It’s your one-stop spot where gaming gets easier, faster, and way more connected.</p>
-      <p><strong>What’s the Hype?</strong></p>
-      <ul>
-        <li><strong>Blazing fast loading:</strong> Get into your games in seconds, no more waiting around.</li>
-        <li><strong>All games, one place:</strong> No more desktop clutter or lost shortcuts—your games live here.</li>
-        <li><strong>Auto-updates on point:</strong> Keep your games fresh without even thinking about it.</li>
-        <li><strong>Social squad goals:</strong> Chat, team up, and flex your wins right inside the launcher.</li>
-        <li><strong>Exclusive drops & events:</strong> Early access to sales, tournaments, and special content just for MineTrade Hub users.</li>
-      </ul>
-      <p><strong>The Future Looks Lit</strong></p>
-      <p>MineTrade Hub isn’t stopping here. We’re already cooking up new features — more customization, smarter game picks, and cooler ways to connect with your crew.</p>
-      <p><strong>Ready to Level Up?</strong></p>
-      <p>Download <strong>MineTrade Hub</strong> today and jump into a smoother, faster, and more epic gaming experience. Whether you’re casual or grinding hard, MineTrade Hub’s got your back.</p>
-      <p>Note: This Is Beta Version Of The Launcher</p>
-      <p>you can download it from our discord server<p>
-      <p>Catch you on the flip side,<br>— The MineTrade Hub Team</p>
+      <p>
+        MineTradeInteractive continues to grow its game portfolio with the addition of new projects aimed at delivering
+        accessible and engaging gameplay experiences for both PC and mobile users.
+      </p>
+
+      <p>
+        The expansion highlights the company’s commitment to building simple, polished, and fun games while laying
+        the foundation for future innovation and community-driven development.
+      </p>
+
+      <p>
+        As development progresses, MineTradeInteractive will continue sharing updates, previews, and early access
+        opportunities with players across its platforms.
+      </p>
+
+      <!-- More Info Button -->
+      <div class="info-btn-wrapper">
+        <a href="../games.html" class="info-btn">More Information</a>
+      </div>
     </article>
   </main>
+
 </body>
 </html>
