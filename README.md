@@ -1,6 +1,6 @@
 # MineTrade Interactive Website
 
-Welcome to the official website repository of **MineTrade**.
+Welcome to the official website repository of **MineTradeInteractive**.
 
 ## Overview
 
