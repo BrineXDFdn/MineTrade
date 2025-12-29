@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Games - MineTrade Interactive</title>
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
@@ -40,7 +40,6 @@
       font-weight: 700;
       font-size: 1.1rem;
       text-decoration: none;
-      user-select: none;
       transition: color 0.3s ease;
     }
 
@@ -64,36 +63,44 @@
       flex-grow: 1;
       padding: 20px;
       display: flex;
-      flex-direction: column; /* Stack game boxes vertically */
-      align-items: center;    /* Center horizontally */
-      gap: 20px;              /* Space between boxes */
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    /* Game box link wrapper */
+    /* Game box link */
     .game-box-link {
       text-decoration: none;
       color: inherit;
-      display: block; /* Makes the whole box clickable */
       width: 100%;
       max-width: 800px;
+      display: block;
     }
 
-    /* Game box style */
+    /* Game box */
     .game-box {
       background-color: #111;
       border: 2px solid #00ccff;
-      padding: 24px 32px;
-      border-radius: 12px;
+      padding: 28px 32px;
+      border-radius: 14px;
       text-align: center;
       box-shadow: 0 0 20px #00ccff44, 0 0 40px #00ccff22;
-      animation: fadeInGlow 2s forwards;
+      animation: fadeInGlow 1.8s forwards;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    /* Game logo */
+    .game-logo {
+      width: 140px;
+      height: auto;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 0 12px #00ccff88);
+    }
+
     .game-box h2 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       color: #00ccff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .game-box p {
@@ -101,13 +108,13 @@
       color: #e0e0e0;
     }
 
-    /* Hover effect to make box pop */
     .game-box-link:hover .game-box {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       box-shadow: 0 0 35px #00ccffcc, 0 0 70px #00ccff88;
     }
 
     @keyframes fadeInGlow {
+      from { opacity: 0; }
       to {
         opacity: 1;
         box-shadow: 0 0 30px #00ccffcc, 0 0 60px #00ccff88;
@@ -115,12 +122,12 @@
     }
 
     @media (max-width: 480px) {
-      .back-arrow {
-        font-size: 1rem;
+      .game-logo {
+        width: 110px;
       }
 
       .game-box {
-        padding: 16px 20px;
+        padding: 18px 22px;
       }
 
       .game-box h2 {
@@ -133,10 +140,12 @@
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
       </svg>
       Back to Home
@@ -144,15 +153,21 @@
   </header>
 
   <main>
-    <!-- Clickable game box -->
-    <a href="Games/KickFlare.html" class="game-box-link">
+    <!-- SquareScape Game -->
+    <a href="Games/SquareScape.html" class="game-box-link">
       <div class="game-box">
-        <h2>KickFlare</h2>
-        <p>Date: September 11, 2025</p>
+        <img 
+          src="Images/SquareScape.png" 
+          alt="SquareScape Logo" 
+          class="game-logo"
+        />
+        <h2>SquareScape</h2>
+        <p>Last Edition: December 29, 2025</p>
       </div>
     </a>
 
-    <!-- You can add more game boxes here in the future -->
+    <!-- Add more games below -->
   </main>
+
 </body>
 </html>
