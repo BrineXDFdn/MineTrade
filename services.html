@@ -7,137 +7,28 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
-    .section {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #222;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .section-header {
-      cursor: pointer;
-      padding: 15px 20px;
-      font-weight: bold;
-      background: #111;
-      color: #00ccff;
-      user-select: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.3rem;
-    }
-
-    .section-header:hover,
-    .section-header:focus {
-      background: #222;
-      outline: none;
-    }
-
-    .section-content {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 20px;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      color: #ccc;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .section.open .section-content {
-      max-height: 2000px;
-      padding: 15px 20px 20px;
-    }
-
-    .arrow {
-      transition: transform 0.3s ease;
-      font-size: 1.2rem;
-    }
-
-    .section.open .arrow {
-      transform: rotate(90deg);
-    }
-
-    main {
-      max-width: 900px;
-      margin: 70px auto 40px;
-      padding: 0 20px;
-      color: #eee;
-    }
-
-    .back-arrow {
-      font-size: 1rem;
-      color: #00ccff;
-      text-decoration: none;
-    }
-
-    .back-arrow:hover,
-    .back-arrow:focus {
-      color: #66d9ff;
-      text-decoration: underline;
-    }
-
-    /* Discord button style */
-    .discord-btn {
-      cursor: pointer;
-      padding: 8px 16px;
-      background: #5865F2; /* Discord blurple */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      margin-left: 8px;
-    }
-
-    .discord-btn:hover,
-    .discord-btn:focus {
-      background: #4752c4;
-      outline: none;
-    }
-
-    @media (max-width: 600px) {
-      main {
-        margin: 60px auto 30px;
-        padding: 0 15px;
-      }
-
-      .section-header {
-        font-size: 1.1rem;
-        padding: 12px 16px;
-      }
-
-      .section-content {
-        font-size: 0.95rem;
-        padding: 0 16px;
-      }
-
-      .section.open .section-content {
-        padding: 12px 16px 16px;
-      }
-
-      .back-arrow {
-        font-size: 0.95rem;
-      }
-
-      .discord-btn {
-        font-size: 0.9rem;
-        padding: 7px 14px;
-      }
-    }
+    .page-head { max-width: 900px; margin: 0 auto; padding: 48px 20px 4px; }
+    main { max-width: 900px; margin: 0 auto; padding: 0 20px 70px; }
+    .discord-btn { margin-top: 4px; }
   </style>
 </head>
 <body>
 
   <header class="top-bar">
-    <a href="index.html" class="back-arrow" aria-label="Back to Home">← Back to Home</a>
+    <a href="index.html" class="back-link" aria-label="Back to Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
+    </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
+  <div class="page-head">
+    <span class="eyebrow">Legal</span>
+    <h1>Services &amp; Policies</h1>
+  </div>
+
   <main>
-    <h1>Services & Policies</h1>
 
     <!-- Terms of Service -->
     <section class="section" id="terms">
@@ -179,7 +70,7 @@
         <p>Terms governed by the laws of our jurisdiction.</p>
         <h3>9. Contact Us</h3>
         <p>If you have questions, contact us:</p>
-        <button class="discord-btn" onclick="window.open('https://discord.gg/CrzR7NTy3G', '_blank', 'noopener')">Join Discord</button>
+        <button class="btn btn-discord discord-btn" onclick="window.open('https://discord.gg/CrzR7NTy3G', '_blank', 'noopener')">Join Discord</button>
       </div>
     </section>
 
@@ -253,6 +144,10 @@
       });
     });
   </script>
+
+  <footer class="site-footer">
+    MineTrade Interactive &middot; <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a>
+  </footer>
 
 </body>
 </html>
