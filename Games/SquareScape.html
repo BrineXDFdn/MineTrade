@@ -3,124 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SquareScape - MineTrade Interactive</title>
+  <title>SquareScape — MineTrade Interactive</title>
+  <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../Images/favicon.ico" type="image/x-icon" />
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-    body {
-      background-color: #121212;
-      color: #eee;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
+    .hero-game {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 20px 8px;
+      text-align: center;
     }
+    .hero-game img.logo {
+      width: 84px;
+      margin: 0 auto 16px;
+      border-radius: var(--radius-sm);
+    }
+    .hero-game h1 { font-size: 2.2rem; margin-bottom: 10px; }
 
-    header {
-      background: #050505;
-      padding: 16px 24px;
-      border-bottom: 1px solid #222;
+    .spec-row {
       display: flex;
-      align-items: center;
-    }
-
-    .back-arrow {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #eee;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .back-arrow:hover {
-      color: #00ccff;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 18px 0 6px;
+      font-family: var(--font-mono);
     }
 
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 20px 70px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      color: #00ccff;
-      text-align: center;
+      gap: 36px;
     }
 
     .image-label {
       text-align: center;
-      font-size: 1.2rem;
-      color: #00ccff;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
     }
 
-    .poster,
-    .screenshot {
+    .poster, .screenshot {
       display: block;
       max-width: 100%;
-      border-radius: 8px;
+      border-radius: var(--radius);
       margin: 0 auto;
       cursor: pointer;
-      box-shadow: 0 0 25px #00ccff44, 0 0 50px #00ccff22;
-      transition: transform 0.3s ease;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 0 1px var(--cyan-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .poster:hover, .screenshot:hover {
+      transform: scale(1.015);
+      box-shadow: var(--shadow-glow);
     }
 
-    .poster:hover,
-    .screenshot:hover {
-      transform: scale(1.02);
-    }
-
-    .download-game-btn {
-      display: inline-block;
-      background: #00ccff;
-      color: #000;
-      font-weight: bold;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .download-game-btn:hover {
-      background: #33eaff;
-    }
-
-    .text-section {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #ccc;
-    }
-
-    .status {
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-      color: #00ccff;
-    }
+    .text-section { font-size: 1rem; }
 
     /* Popup */
     .popup {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       z-index: 1000;
+      gap: 18px;
     }
-
-    .popup img {
-      max-width: 90%;
-      max-height: 70%;
-      border-radius: 8px;
-    }
+    .popup img { max-width: 90%; max-height: 70%; border-radius: var(--radius); }
 
     .popup .close-btn {
       position: absolute;
@@ -132,99 +90,75 @@
       cursor: pointer;
       background: rgba(0,0,0,0.6);
       border-radius: 50%;
-      padding: 5px 12px;
+      padding: 5px 14px;
+      line-height: 1;
       transition: background 0.3s;
     }
-
-    .popup .close-btn:hover {
-      background: #00ccff;
-    }
-
-    .popup .download-btn {
-      margin-top: 20px;
-      background: #00ccff;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .popup .download-btn:hover {
-      background: #33eaff;
-    }
+    .popup .close-btn:hover { background: var(--cyan); color: #04161b; }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      .text-section {
-        font-size: 1.05rem;
-      }
-      .poster,
-      .screenshot {
-        max-width: 90%;
-      }
+      .hero-game h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <a href="../games.html" class="back-arrow" aria-label="Back to Games">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Games
+  <header class="top-bar">
+    <a href="../games.html" class="back-link" aria-label="Back to Games">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Games
     </a>
+    <a href="../index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
-  <main>
+  <div class="hero-game">
+    <img src="../Images/SquareScape.png" alt="SquareScape logo" class="logo" />
+    <span class="tag live">Live now</span>
     <h1>SquareScape</h1>
+    <div class="spec-row">
+      <span class="tag">VERSION · 1.0</span>
+      <span class="tag">PLATFORM · PC &amp; Mobile</span>
+      <span class="tag">RELEASED · DEC 30 2025</span>
+    </div>
+  </div>
 
-    <!-- Poster -->
-    <div class="image-label">PP Poster</div>
-    <img
-      src="../Images/SquareScapePPPoster.png"
-      alt="SquareScape Poster"
-      class="poster"
-      onclick="openPopup('../Images/SquareScapePPPoster.png')"
-    />
-
-    <!-- Description -->
-    <div class="text-section">
-      SquareScape is a clean and simple digital <strong>Tic Tac Toe</strong> game designed for both PC and mobile devices.  
-      It focuses on classic gameplay with a modern UI, smooth controls, and a distraction-free experience.  
-      Whether you’re playing casually or competitively, SquareScape delivers timeless fun in a minimal format.
+  <main>
+    <div>
+      <div class="image-label">Poster</div>
+      <img
+        src="../Images/SquareScapePPPoster.png"
+        alt="SquareScape promotional poster"
+        class="poster"
+        onclick="openPopup('../Images/SquareScapePPPoster.png')"
+      />
     </div>
 
-    <!-- Screenshot -->
-    <div class="image-label">Screenshot</div>
-    <img
-      src="../Images/SquareScapeScreenshot.png"
-      alt="SquareScape Screenshot"
-      class="screenshot"
-      onclick="openPopup('../Images/SquareScapeScreenshot.png')"
-    />
-
-    <!-- Development info -->
     <div class="text-section">
-      SquareScape is currently in development with a focus on stability, responsive design, and future feature expansion.  
-      Planned updates include improved animations, AI difficulty options, and online-friendly enhancements.
+      SquareScape is a clean, simple digital <strong>Tic-Tac-Toe</strong> built for both PC and mobile.
+      It keeps the classic game intact and wraps it in a modern UI with smooth controls and a distraction-free layout —
+      good for a quick match or a longer streak of rematches.
     </div>
 
-    <!-- Version & Status -->
-    <div class="status">Version: Release: 1.0 | Status: Release</div>
+    <div>
+      <div class="image-label">Screenshot</div>
+      <img
+        src="../Images/SquareScapeScreenshot.png"
+        alt="SquareScape gameplay screenshot"
+        class="screenshot"
+        onclick="openPopup('../Images/SquareScapeScreenshot.png')"
+      />
+    </div>
 
-    <!-- Release Date -->
-    <div class="status">Relase Date: December 30 2025 </div>
-    
-    <!-- Join Testing -->
-    <div style="text-align:center; margin-top: 20px;">
-      <a href="https://minetrade-interactive.itch.io/square-scape" class="download-game-btn">
-        Download The Game
+    <div class="text-section">
+      Development continues with a focus on stability, responsive design, and a few features already on the roadmap:
+      smoother animations, adjustable AI difficulty, and online-friendly play.
+    </div>
+
+    <div style="text-align:center;">
+      <a href="https://minetrade-interactive.itch.io/square-scape" class="btn btn-primary" target="_blank" rel="noopener">
+        Download the game →
       </a>
     </div>
   </main>
@@ -233,7 +167,7 @@
   <div class="popup" id="popup">
     <span class="close-btn" onclick="closePopup()">&times;</span>
     <img id="popup-img" src="" alt="Expanded view" />
-    <a id="download-link" class="download-btn">Download Image</a>
+    <a id="download-link" class="btn btn-primary">Download image</a>
   </div>
 
   <!-- JS -->
@@ -241,4 +175,3 @@
 
 </body>
 </html>
-
