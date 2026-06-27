@@ -3,117 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News - MineTrade Interactive</title>
+  <title>News — MineTrade Interactive</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
-    body {
-      background-color: #121212;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 80px auto 40px;
-      padding: 0 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #00ccff;
-    }
+    .page-head { max-width: 900px; margin: 0 auto; padding: 48px 20px 8px; }
+    .page-head h1 { margin: 14px 0 8px; }
 
     .news-list {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 20px 70px;
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 16px;
     }
 
-    article {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 15px 20px;
+    article.card {
+      padding: 22px 24px;
       display: flex;
       flex-direction: column;
     }
 
-    article h2 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #00ccff;
-    }
-
-    article h2 a {
-      color: #00ccff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    article h2 a:hover {
-      color: #0099cc;
-      text-decoration: underline;
-    }
+    article h2 { margin: 0 0 8px; font-size: 1.3rem; }
+    article h2 a { color: var(--ink); }
+    article h2 a:hover { color: var(--cyan); }
 
     .meta-info {
-      margin: 8px 0 12px;
-      font-size: 0.9rem;
-      color: #999;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
     .read-more {
       align-self: flex-start;
-      font-weight: bold;
-      color: #00ccff;
-      text-decoration: none;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
     }
 
-    .read-more:hover {
-      color: #0099cc;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      main {
-        padding: 0 15px;
-      }
-      article h2 {
-        font-size: 1.25rem;
-      }
-    }
+    article.card:hover { border-color: var(--cyan-soft); box-shadow: var(--shadow-glow); }
   </style>
 </head>
 <body>
   <header class="top-bar">
-    <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px; margin-right:8px; fill:#eee;">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Home
+    <a href="index.html" class="back-link" aria-label="Go back to homepage">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
     </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
-  <main>
-    <h1>News</h1>
-    <section class="news-list">
+  <div class="page-head">
+    <span class="eyebrow">Dispatch</span>
+    <h1>News &amp; updates</h1>
+  </div>
 
-       <!-- News item 1 (newest) -->
-      <article>
-        <h2><a href="News/news2.html" target="_blank" rel="noopener noreferrer">🚀 MineTradeInteractive Expands Game Portfolio 🎮</a></h2>
-        <div class="meta-info">December 29, 2025 | Author: MineTradeInteractive</div>
-      </article>
+  <main class="news-list">
+    <article class="card">
+      <span class="tag live" style="margin-bottom:10px;">New</span>
+      <h2><a href="News/news2.html">🚀 MineTrade Interactive Expands Game Portfolio 🎮</a></h2>
+      <div class="meta-info">December 29, 2025 · MineTrade Interactive</div>
+      <a href="News/news2.html" class="read-more">Read the announcement →</a>
+    </article>
 
-      <!-- News item 2 (oldest) -->
-      <article>
-        <h2><a href="News/news1.html" target="_blank" rel="noopener noreferrer">Welcome to MineTrade Interactive</a></h2>
-        <div class="meta-info">June 5, 2025 | Author: MineTradeInteractive</div>
-      </article>
-
-    </section>
+    <article class="card">
+      <h2><a href="News/news1.html">Welcome to MineTrade Interactive</a></h2>
+      <div class="meta-info">June 5, 2025 · MineTrade Interactive</div>
+      <a href="News/news1.html" class="read-more">Read more →</a>
+    </article>
   </main>
+
+  <footer class="site-footer">
+    MineTrade Interactive · <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a> · <a href="services.html">Terms &amp; Policies</a>
+  </footer>
 </body>
 </html>
-
