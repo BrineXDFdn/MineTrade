@@ -3,153 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>news-2</title>
+  <title>MineTrade Interactive Expands Game Portfolio — News</title>
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../Images/favicon.ico" type="image/x-icon" />
-
   <style>
-    body {
-      background-color: #121212;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 80px auto 40px;
-      padding: 0 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #00ccff;
-    }
-
+    main { max-width: 760px; padding: 56px 20px 70px; }
     .meta-info {
-      font-size: 0.9rem;
-      color: #999;
-      margin-bottom: 30px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 26px;
     }
-
-    article {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    article p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ccc;
-      margin-bottom: 15px;
-    }
-
-    .info-btn-wrapper {
-      text-align: center;
-      margin-top: 25px;
-    }
-
-    .info-btn {
-      display: inline-block;
-      background: #00ccff;
-      color: #000;
-      font-weight: bold;
-      padding: 12px 26px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .info-btn:hover {
-      background: #33eaff;
-      transform: translateY(-2px);
-    }
-
-    .back-arrow {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      text-decoration: none;
-      color: #eee;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      user-select: none;
-      margin-bottom: 40px;
-    }
-
-    .back-arrow:hover {
-      color: #00ccff;
-    }
-
-    .back-arrow svg {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
-    }
-
-    .back-arrow:hover svg {
-      transform: translateX(-6px);
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      article p {
-        font-size: 0.95rem;
-      }
-
-      .info-btn {
-        padding: 10px 22px;
-        font-size: 0.95rem;
-      }
-    }
+    article.card { padding: 28px 30px; }
+    article p:last-of-type { margin-bottom: 1.5em; }
+    .info-btn-wrapper { text-align: center; }
   </style>
 </head>
 
 <body>
-
-  <header>
-    <a href="../news.html" class="back-arrow" aria-label="Back to News">
-      <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
+  <header class="top-bar">
+    <a href="../news.html" class="back-link" aria-label="Back to News">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
       Back to News
     </a>
+    <a href="../index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
   <main>
-    <h1>🚀 MineTradeInteractive Expands Game Portfolio 🎮</h1>
-    <div class="meta-info">December 29, 2025 | Author: MineTradeInteractive</div>
+    <span class="eyebrow">Dispatch</span>
+    <h1>🚀 MineTrade Interactive Expands Game Portfolio 🎮</h1>
+    <div class="meta-info">December 29, 2025 · Author: MineTrade Interactive</div>
 
-    <article>
+    <article class="card">
       <p>
-        MineTradeInteractive continues to grow its game portfolio with the addition of new projects aimed at delivering
-        accessible and engaging gameplay experiences for both PC and mobile users.
+        MineTrade Interactive continues to grow its game portfolio with the addition of new projects aimed at delivering
+        accessible and engaging gameplay experiences for both PC and mobile players.
       </p>
-
       <p>
-        The expansion highlights the company’s commitment to building simple, polished, and fun games while laying
+        The expansion reflects the studio's commitment to building simple, polished, and fun games while laying
         the foundation for future innovation and community-driven development.
       </p>
-
       <p>
-        As development progresses, MineTradeInteractive will continue sharing updates, previews, and early access
+        As development progresses, MineTrade Interactive will keep sharing updates, previews, and early access
         opportunities with players across its platforms.
       </p>
 
-      <!-- More Info Button -->
       <div class="info-btn-wrapper">
-        <a href="../games.html" class="info-btn">More Information</a>
+        <a href="../games.html" class="btn btn-primary">See the games →</a>
       </div>
     </article>
   </main>
 
+  <footer class="site-footer">
+    MineTrade Interactive · <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a>
+  </footer>
 </body>
 </html>
