@@ -3,171 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Games - MineTrade Interactive</title>
+  <title>Games — MineTrade Interactive</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: #050505;
-      padding: 16px 24px;
-      border-bottom: 1px solid #111;
-      display: flex;
-      align-items: center;
-    }
-
-    .back-arrow {
-      display: flex;
-      align-items: center;
-      color: #00ccff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .back-arrow svg {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
-    }
-
-    .back-arrow:hover {
-      color: #33eaff;
-    }
-
-    .back-arrow:hover svg {
-      transform: translateX(-6px);
-    }
-
-    main {
-      flex-grow: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* Game box link */
-    .game-box-link {
-      text-decoration: none;
-      color: inherit;
-      width: 100%;
-      max-width: 800px;
-      display: block;
-    }
-
-    /* Game box */
-    .game-box {
-      background-color: #111;
-      border: 2px solid #00ccff;
-      padding: 28px 32px;
-      border-radius: 14px;
+    .page-head {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 20px 8px;
       text-align: center;
-      box-shadow: 0 0 20px #00ccff44, 0 0 40px #00ccff22;
-      animation: fadeInGlow 1.8s forwards;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .page-head h1 { margin: 14px 0 8px; }
+    .page-head p { max-width: 480px; margin: 0 auto; }
+
+    .game-grid {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 20px 70px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
 
-    /* Game logo */
+    .game-box-link { text-decoration: none; color: inherit; display: block; }
+
+    .game-box {
+      padding: 28px 26px;
+      text-align: center;
+      height: 100%;
+    }
+
     .game-logo {
-      width: 140px;
-      height: auto;
-      margin-bottom: 18px;
-      filter: drop-shadow(0 0 12px #00ccff88);
+      width: 110px;
+      margin: 0 auto 16px;
+      border-radius: var(--radius-sm);
     }
 
-    .game-box h2 {
-      font-size: 1.9rem;
-      color: #00ccff;
-      margin-bottom: 10px;
-    }
-
-    .game-box p {
-      font-size: 1.1rem;
-      color: #e0e0e0;
-    }
+    .game-box h2 { font-size: 1.4rem; margin-bottom: 6px; }
+    .game-box .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); margin-top: 10px; }
 
     .game-box-link:hover .game-box {
-      transform: translateY(-6px);
-      box-shadow: 0 0 35px #00ccffcc, 0 0 70px #00ccff88;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--cyan-soft);
     }
 
-    @keyframes fadeInGlow {
-      from { opacity: 0; }
-      to {
-        opacity: 1;
-        box-shadow: 0 0 30px #00ccffcc, 0 0 60px #00ccff88;
-      }
+    /* upcoming / locked slot */
+    .game-box.upcoming {
+      border-style: dashed;
+      opacity: 0.85;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+    .game-box.upcoming .lock { font-size: 1.8rem; margin-bottom: 12px; color: var(--ink-faint); }
+    .game-box.upcoming h2 { color: var(--ink-faint); }
 
-    @media (max-width: 480px) {
-      .game-logo {
-        width: 110px;
-      }
-
-      .game-box {
-        padding: 18px 22px;
-      }
-
-      .game-box h2 {
-        font-size: 1.5rem;
-      }
-
-      .game-box p {
-        font-size: 1rem;
-      }
+    @media (max-width: 600px) {
+      .game-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Home
+  <header class="top-bar">
+    <a href="index.html" class="back-link" aria-label="Go back to homepage">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
     </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
-  <main>
-    <!-- SquareScape Game -->
+  <div class="page-head">
+    <span class="eyebrow">Catalog</span>
+    <h1>Everything we've shipped — and what's loading.</h1>
+    <p>One small game out the door, more in the workshop.</p>
+  </div>
+
+  <main class="game-grid">
     <a href="Games/SquareScape.html" class="game-box-link">
-      <div class="game-box">
-        <img 
-          src="Images/SquareScape.png" 
-          alt="SquareScape Logo" 
-          class="game-logo"
-        />
+      <div class="card game-box">
+        <img src="Images/SquareScape.png" alt="SquareScape logo" class="game-logo" />
+        <span class="tag live">Live now</span>
         <h2>SquareScape</h2>
-        <p>Last Edition: December 29, 2025</p>
+        <p>A clean, minimal Tic-Tac-Toe built for PC and mobile.</p>
+        <div class="meta">LAST UPDATE · DEC 29 2025</div>
       </div>
     </a>
 
-    <!-- Add more games below -->
+    <div class="card game-box upcoming">
+      <span class="lock">🔒</span>
+      <span class="tag soon">In development</span>
+      <h2>Next Project</h2>
+      <p>Not announced yet — Discord members hear about it first.</p>
+    </div>
   </main>
+
+  <footer class="site-footer">
+    MineTrade Interactive · <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a> · <a href="services.html">Terms &amp; Policies</a>
+  </footer>
 
 </body>
 </html>
