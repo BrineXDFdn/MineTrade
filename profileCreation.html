@@ -3,36 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profile Creation - MineTrade Interactive</title>
+  <title>Sign Up — MineTrade Interactive</title>
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Background image and overlay */
-    body, html {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    body, html { height: 100%; }
+    body {
+      background:
+        linear-gradient(rgba(11,13,16,0.75), rgba(11,13,16,0.92)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
       background-size: cover;
-      position: relative;
       display: flex;
       flex-direction: column;
-      color: #eee;
-    }
-
-    /* Dark overlay for contrast */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 0;
-    }
-
-    /* Place header on top */
-    header.top-bar {
-      position: relative;
-      z-index: 10;
     }
 
     main {
@@ -41,113 +23,96 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      position: relative;
-      z-index: 10;
     }
 
     .auth-box {
-      background: rgba(34, 34, 34, 0.85);
-      padding: 35px 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
-      max-width: 400px;
+      background: rgba(18, 21, 26, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 34px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line-bright);
+      box-shadow: var(--shadow-glow);
+      max-width: 380px;
       width: 100%;
       text-align: center;
-      color: #eee;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
     }
+
+    .auth-box h1 { font-size: 1.5rem; margin-bottom: 4px; }
+    .auth-box .sub { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 20px; }
 
     .auth-box input {
       width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border-radius: 6px;
-      border: 1px solid #333;
-      background: #111;
-      color: #eee;
-      font-size: 1rem;
+      padding: 11px 12px;
+      margin: 7px 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-bright);
+      background: var(--void);
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-family: var(--font-body);
     }
+    .auth-box input:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
 
-    .auth-box button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 12px;
-      background-color: #00ccff;
-      color: #111;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .auth-box button:hover {
-      background-color: #00aacc;
-    }
+    .auth-box .btn { width: 100%; margin-top: 12px; }
 
     .toggle-link {
-      margin-top: 12px;
-      font-size: 0.9rem;
-      color: #ccc;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--ink-dim);
       cursor: pointer;
       display: inline-block;
     }
-
-    .toggle-link:hover {
-      color: #00ccff;
-      text-decoration: underline;
-    }
+    .toggle-link:hover { color: var(--cyan); text-decoration: underline; }
 
     .message {
-      margin-top: 12px;
-      color: #f55;
-      font-weight: bold;
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--amber-soft);
+      border: 1px solid var(--amber);
+      color: var(--ink);
+      font-size: 0.88rem;
+      text-align: left;
       display: none;
     }
-
-    /* Back arrow link style */
-    .back-arrow {
-      color: #00ccff;
-      font-weight: bold;
-      text-decoration: none;
-      user-select: none;
-    }
-
-    .back-arrow:hover,
-    .back-arrow:focus {
-      color: #66d9ff;
-      text-decoration: underline;
-      outline: none;
-    }
+    .message a { color: var(--amber); font-weight: 600; }
   </style>
 </head>
 <body>
 
   <header class="top-bar">
-    <a href="index.html" class="back-arrow" aria-label="Back to Home">← Back to Home</a>
+    <a href="index.html" class="back-link" aria-label="Back to Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
+    </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
   <main>
     <div class="auth-box" id="authBox">
-      <h1 id="formTitle">Sign Up</h1>
+      <h1 id="formTitle">Create your account</h1>
+      <p class="sub">Save your SquareScape stats and settings.</p>
 
       <div id="signupForm">
         <input type="text" id="signupName" placeholder="Name" required />
         <input type="email" id="signupEmail" placeholder="Email" required />
         <input type="password" id="signupPassword" placeholder="Password" required />
-        <button onclick="showMessage()">Sign Up</button>
-        <div class="toggle-link" onclick="toggleForm()">Already have an account? Login</div>
+        <button class="btn btn-primary" onclick="showMessage()">Sign up</button>
+        <div class="toggle-link" onclick="toggleForm()">Already have an account? Log in</div>
       </div>
 
       <div id="loginForm" style="display: none;">
         <input type="email" id="loginEmail" placeholder="Email" required />
         <input type="password" id="loginPassword" placeholder="Password" required />
-        <button onclick="showMessage()">Login</button>
-        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Sign Up</div>
+        <button class="btn btn-primary" onclick="showMessage()">Log in</button>
+        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Sign up</div>
       </div>
 
-      <div id="message" class="message">We are Sorry Because Properly Implementing this feature is not possible for us.</div>
+      <div id="message" class="message">
+        Accounts aren't live yet — this page is a preview of what's coming.
+        Want in early or have a question? <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Join the Discord</a>.
+      </div>
     </div>
   </main>
 
@@ -157,15 +122,15 @@
       const loginForm = document.getElementById('loginForm');
       const formTitle = document.getElementById('formTitle');
       const message = document.getElementById('message');
-      message.style.display = 'none'; // Hide message on toggle
+      message.style.display = 'none';
       if (signupForm.style.display === 'none') {
         signupForm.style.display = 'block';
         loginForm.style.display = 'none';
-        formTitle.textContent = 'Sign Up';
+        formTitle.textContent = 'Create your account';
       } else {
         signupForm.style.display = 'none';
         loginForm.style.display = 'block';
-        formTitle.textContent = 'Login';
+        formTitle.textContent = 'Welcome back';
       }
     }
 
