@@ -3,165 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - MineTrade Interactive</title>
+  <title>MineTrade Interactive — Indie Games, Built In The Open</title>
+  <meta name="description" content="MineTrade Interactive is a small indie studio building simple, polished games — currently shipping SquareScape." />
+  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* ---- page-specific: hero, sidebar drawer, feature grid ---- */
 
-    html, body {
-      font-family: Arial, sans-serif;
-      color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: url('https://images.unsplash.com/photo-1651012998667-2c779fee76f8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0') no-repeat center center fixed;
-      background-size: cover;
+    body { overflow-x: hidden; }
+
+    /* faint isometric block-grid texture, evokes mining/voxel without any actual game assets */
+    .hero {
       position: relative;
+      padding: 86px 20px 0;
+      background-image:
+        linear-gradient(rgba(11,13,16,0.55), rgba(11,13,16,0.92) 70%),
+        repeating-linear-gradient(60deg, rgba(0,216,255,0.05) 0 2px, transparent 2px 38px),
+        repeating-linear-gradient(-60deg, rgba(255,182,72,0.04) 0 2px, transparent 2px 38px);
+      background-size: cover, 76px 132px, 76px 132px;
+      background-position: center;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 0;
-    }
-
-    /* Top Bar */
-    .top-bar {
-      background-color: rgba(0, 0, 0, 0.85);
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-    }
-
-    .left-buttons {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .top-button {
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: #eee;
-      cursor: pointer;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .top-button:hover { color: #00ccff; }
-
-    #hamburgerBtn.open { transform: rotate(90deg); }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -260px;
-      width: 260px;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
-      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.8);
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      gap: 20px;
-      transition: left 0.3s ease;
-      z-index: 1100;
-    }
-
-    .sidebar.open { left: 0; }
-
-    #closeBtn {
-      align-self: flex-end;
-      background: none;
-      border: none;
-      font-size: 28px;
-      color: #eee;
-      cursor: pointer;
-    }
-
-    .sidebar-link {
-      color: #eee;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.2rem;
-      padding: 12px;
-      border-radius: 6px;
-      transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    .sidebar-link:hover {
-      background-color: #00ccff;
-      color: #111;
-    }
-
-    /* Main */
-    main {
-      flex-grow: 1;
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: calc(100vh - 50px);
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .welcome-box {
-      background: rgba(34, 34, 34, 0.85);
-      padding: 100px 60px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0, 204, 255, 0.3);
-      max-width: 1000px;
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 0 56px;
       text-align: center;
     }
 
-    .welcome-box h1 {
-      font-size: 2.5rem;
-      color: #00ccff;
-      text-shadow: 0 0 6px #00ccff99;
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+      margin: 18px 0 16px;
+    }
+    .hero h1 .accent { color: var(--cyan); }
+
+    .hero p.lead {
+      font-size: 1.1rem;
+      color: var(--ink-dim);
+      max-width: 560px;
+      margin: 0 auto 30px;
     }
 
-    /* AI Helpline Button */
-    .ai-helpline-btn {
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* sidebar drawer */
+    .sidebar {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #00ccff, #0077ff);
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 6px;
+      transition: left 0.3s ease;
+      z-index: 1100;
+    }
+    .sidebar.open { left: 0; }
+
+    .sidebar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    #closeBtn {
+      background: none;
       border: none;
-      color: #111;
-      font-size: 26px;
+      font-size: 22px;
+      color: var(--ink-dim);
       cursor: pointer;
-      z-index: 1200;
-      box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      line-height: 1;
+    }
+    #closeBtn:hover { color: var(--cyan); }
+
+    .sidebar-link {
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .sidebar-link:hover {
+      background: var(--cyan-soft);
+      color: var(--cyan);
     }
 
-    .ai-helpline-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(0, 204, 255, 0.9);
+    .scrim {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .scrim.open { opacity: 1; pointer-events: auto; }
+
+    .top-button {
+      font-size: 21px;
+      background: none;
+      border: none;
+      color: var(--ink-dim);
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+      padding: 6px;
+    }
+    .top-button:hover { color: var(--cyan); }
+    .top-actions { display: flex; gap: 4px; }
+    #hamburgerBtn.open { transform: rotate(90deg); }
+
+    /* feature grid */
+    .features {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 56px 20px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
-    @media (max-width: 600px) {
-      .welcome-box { padding: 60px 30px; }
-      .welcome-box h1 { font-size: 2rem; }
+    .feature {
+      padding: 26px 22px;
+    }
+
+    .feature .glyph {
+      font-family: var(--font-mono);
+      color: var(--amber);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feature h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .feature p { font-size: 0.92rem; margin: 0; }
+
+    .feature:hover {
+      border-color: var(--cyan-soft);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* featured game strip */
+    .spotlight {
+      max-width: 920px;
+      margin: 8px auto 70px;
+      padding: 0 20px;
+    }
+
+    .spotlight-card {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding: 26px 28px;
+    }
+
+    .spotlight-card img {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+
+    .spotlight-text { flex: 1; min-width: 0; }
+    .spotlight-text h3 { margin-bottom: 4px; font-size: 1.15rem; }
+    .spotlight-text p { margin: 0; font-size: 0.92rem; }
+
+    .spotlight-card:hover {
+      border-color: var(--cyan-soft);
+      box-shadow: var(--shadow-glow);
+    }
+
+    @media (max-width: 760px) {
+      .features { grid-template-columns: 1fr; }
+      .spotlight-card { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -169,17 +199,23 @@
 <body>
 
   <header class="top-bar">
-    <div class="left-buttons">
-      <button id="hamburgerBtn" class="top-button">☰</button>
+    <div class="top-actions">
+      <button id="hamburgerBtn" class="top-button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">☰</button>
     </div>
-    <div class="left-buttons">
-      <button id="profileBtn" class="top-button">👤</button>
-      <button id="applyBtn" class="top-button">📝</button>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <div class="top-actions">
+      <button id="profileBtn" class="top-button" aria-label="Account">👤</button>
+      <button id="applyBtn" class="top-button" aria-label="Apply to join">📝</button>
     </div>
   </header>
 
-  <nav id="sidebar" class="sidebar">
-    <button id="closeBtn">✕</button>
+  <div class="scrim" id="scrim"></div>
+
+  <nav id="sidebar" class="sidebar" aria-label="Site navigation">
+    <div class="sidebar-top">
+      <span class="brand"><span class="mark">⛏</span>&nbsp;MineTrade</span>
+      <button id="closeBtn" aria-label="Close menu">✕</button>
+    </div>
     <a href="index.html" class="sidebar-link">Home</a>
     <a href="services.html" class="sidebar-link">Services</a>
     <a href="games.html" class="sidebar-link">Games</a>
@@ -187,25 +223,121 @@
     <a href="management.html" class="sidebar-link">Management</a>
   </nav>
 
-  <main>
-    <div class="welcome-box">
-      <h1>Welcome To MineTrade Interactive</h1>
+  <section class="hero">
+    <div class="hero-inner rise">
+      <span class="eyebrow">Indie Studio · Est. 2025</span>
+      <h1>Small team.<br>Built in the <span class="accent">open</span>.</h1>
+      <p class="lead">MineTrade Interactive makes simple, polished games and ships them straight to players — no publishers, no padding, just a two-person team and a Discord full of people who showed up early.</p>
+      <div class="hero-actions">
+        <a href="games.html" class="btn btn-primary">Play SquareScape →</a>
+        <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener" class="btn btn-discord">Join the Discord</a>
+      </div>
     </div>
-  </main>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>STUDIO STATUS <span class="up">● ONLINE</span></span>
+        <span>GAMES SHIPPED <span class="flag">01</span></span>
+        <span>GAMES IN DEV <span class="flag">01</span></span>
+        <span>TEAM SIZE <span>02</span></span>
+        <span>LAST RELEASE <span>SquareScape — Dec 29 2025</span></span>
+        <span>STUDIO STATUS <span class="up">● ONLINE</span></span>
+        <span>GAMES SHIPPED <span class="flag">01</span></span>
+        <span>GAMES IN DEV <span class="flag">01</span></span>
+        <span>TEAM SIZE <span>02</span></span>
+        <span>LAST RELEASE <span>SquareScape — Dec 29 2025</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="card feature rise" style="animation-delay:.05s">
+      <span class="glyph">// 01 BUILD</span>
+      <h3>Small, finished games</h3>
+      <p>We'd rather ship one game that actually works than five that don't. Every release is small on purpose.</p>
+    </div>
+    <div class="card feature rise" style="animation-delay:.12s">
+      <span class="glyph">// 02 COMMUNITY</span>
+      <h3>Open development</h3>
+      <p>Bugs, plans, and roadmap talk happen in Discord, not behind closed doors. Come watch things get built.</p>
+    </div>
+    <div class="card feature rise" style="animation-delay:.19s">
+      <span class="glyph">// 03 SUPPORT</span>
+      <h3>Real help, fast</h3>
+      <p>Stuck on something? The Helpline points you in the right direction, and a human is one click away on Discord.</p>
+    </div>
+  </section>
+
+  <section class="spotlight">
+    <a href="games.html" style="text-decoration:none;">
+      <div class="card spotlight-card rise" style="animation-delay:.25s">
+        <img src="Images/SquareScape.png" alt="SquareScape logo" />
+        <div class="spotlight-text">
+          <span class="tag live">Live now</span>
+          <h3>SquareScape</h3>
+          <p>A clean, minimal Tic-Tac-Toe built for PC and mobile. Our first release — see what's next.</p>
+        </div>
+        <span style="color:var(--ink-faint); font-size:1.4rem;">→</span>
+      </div>
+    </a>
+  </section>
+
+  <footer class="site-footer">
+    MineTrade Interactive · <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a> · <a href="services.html">Terms &amp; Policies</a>
+  </footer>
 
   <!-- AI Helpline Floating Button -->
-  <button class="ai-helpline-btn" id="aiHelplineBtn" title="AI Helpline">🤖</button>
+  <button class="ai-helpline-btn" id="aiHelplineBtn" title="AI Helpline" aria-label="Open AI Helpline">🤖</button>
+
+  <style>
+    .ai-helpline-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: none;
+      color: #04161b;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 0 0 1px rgba(0,216,255,0.4), 0 10px 30px -6px rgba(0,216,255,0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ai-helpline-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 1px rgba(0,216,255,0.5), 0 14px 36px -4px rgba(0,216,255,0.8);
+    }
+  </style>
 
   <script>
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeBtn = document.getElementById('closeBtn');
     const sidebar = document.getElementById('sidebar');
+    const scrim = document.getElementById('scrim');
     const applyBtn = document.getElementById('applyBtn');
     const profileBtn = document.getElementById('profileBtn');
     const aiHelplineBtn = document.getElementById('aiHelplineBtn');
 
-    hamburgerBtn.onclick = () => sidebar.classList.add('open');
-    closeBtn.onclick = () => sidebar.classList.remove('open');
+    function openSidebar() {
+      sidebar.classList.add('open');
+      scrim.classList.add('open');
+      hamburgerBtn.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      scrim.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    hamburgerBtn.onclick = openSidebar;
+    closeBtn.onclick = closeSidebar;
+    scrim.onclick = closeSidebar;
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
     applyBtn.onclick = () =>
       window.open('https://forms.gle/FRXxQUeRDhtoQRZG6', '_blank');
