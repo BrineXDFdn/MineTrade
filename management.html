@@ -3,187 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Management - MineTrade Interactive</title>
+  <title>Management — MineTrade Interactive</title>
   <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      background-color: #121212;
-      color: #eee;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      margin: 0;
-      padding: 0;
+      background:
+        linear-gradient(rgba(11,13,16,0.78), rgba(11,13,16,0.95)),
+        url('https://images.unsplash.com/photo-1735825764460-c5dec05d6253?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    html, body {
-      font-family: Arial, sans-serif;
-      color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: url('https://images.unsplash.com/photo-1735825764460-c5dec05d6253?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-    }
+    .page-head { max-width: 960px; margin: 0 auto; padding: 48px 20px 8px; text-align: center; }
 
     .team-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-      padding: 0 20px 60px;
+      gap: 22px;
+      padding: 28px 20px 70px;
       max-width: 960px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
     }
 
     .profile-card {
-      background: #121212; /* solid dark background */
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 20px;
+      padding: 26px 22px;
       text-align: center;
-      color: #a0cfe8; /* softer blue-gray text except titles */
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
-      outline-offset: 4px;
     }
-
-    .profile-card:hover,
-    .profile-card:focus {
+    .profile-card:hover, .profile-card:focus-visible {
       transform: translateY(-5px);
-      box-shadow: 0 6px 14px rgba(0, 204, 255, 0.6);
-      outline: none;
+      box-shadow: var(--shadow-glow);
+      border-color: var(--cyan-soft);
     }
 
     .profile-image {
-      width: 100px;
-      height: 100px;
+      width: 96px;
+      height: 96px;
       object-fit: cover;
       border-radius: 50%;
-      border: 2px solid #00ccff;
-      margin-bottom: 15px;
+      border: 2px solid var(--cyan);
+      margin-bottom: 14px;
       pointer-events: none;
-      user-select: none;
     }
 
     .profile-title {
-      color: #00ccff; /* keep bright cyan */
-      font-size: 1.3rem;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: 1.1rem;
+      margin: 6px 0 12px;
       pointer-events: none;
     }
 
-    .profile-detail {
-      font-size: 0.95rem;
-      color: #eee; /* bright text for readability */
-      margin: 5px 0;
-      pointer-events: none;
-    }
-
-    .discord-id {
-      font-family: monospace, monospace;
-      color: #eee; /* bright text */
-    }
+    .profile-detail { font-size: 0.92rem; color: var(--ink-dim); margin: 4px 0; pointer-events: none; }
+    .discord-id { font-family: var(--font-mono); color: var(--ink); }
 
     .profile-expanded {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease, padding 0.35s ease;
-      background: rgba(0, 204, 255, 0.1);
-      border-radius: 0 0 12px 12px;
-      padding: 0 20px;
-      color: #eee; /* bright text */
-      font-size: 0.9rem;
-      line-height: 1.4;
+      background: var(--cyan-soft);
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      padding: 0 16px;
+      color: var(--ink-dim);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      text-align: left;
     }
-
-    .profile-expanded.open {
-      max-height: 400px; /* enough for content */
-      padding: 15px 20px 20px;
-    }
-
-    main {
-      max-width: 960px;
-      margin: 80px auto 40px;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #00ccff; /* keep main heading bright cyan */
-      margin-bottom: 0;
-    }
+    .profile-expanded.open { max-height: 400px; padding: 14px 16px; }
 
     @media (max-width: 600px) {
-      .profile-card {
-        padding: 15px;
-      }
-
-      .profile-title {
-        font-size: 1.1rem;
-      }
-
-      .profile-image {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 10px;
-      }
-
-      main {
-        margin: 60px 10px 30px;
-      }
-
-      h1 {
-        font-size: 1.6rem;
-      }
+      .profile-card { padding: 18px; }
+      .profile-image { width: 78px; height: 78px; }
     }
   </style>
 </head>
 <body>
   <header class="top-bar">
-    <a href="index.html" class="back-arrow" aria-label="Go back to homepage">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Home
+    <a href="index.html" class="back-link" aria-label="Go back to homepage">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
     </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
-  <main>
-    <h1>Our Management Team</h1>
-    <div class="team-container">
-      <div class="profile-card" tabindex="0" aria-expanded="false" aria-controls="profile1-details" id="profile1">
-        <img src="Images/jake.png" alt="Jake CEO" class="profile-image" />
-        <h2 class="profile-title">Chief Executive Officer</h2>
-        <div class="profile-detail">Name: <strong>Jake</strong></div>
-        <div class="profile-detail">Discord: <span class="discord-id">@iron_brine</span></div>
-        <p class="profile-detail">"Chief Executive Officer Of MineTradeInteractive."</p>
-        <div class="profile-expanded" id="profile1-details" role="region" aria-hidden="true">
-          <p>Jake Is A Entrepreneur And Game Devloper Since December 2024.</p>
-          <p>Passionate For Gaming And He Worked For SquareScape Devlopment</p>
-        </div>
-      </div>
+  <div class="page-head">
+    <span class="eyebrow">The Team</span>
+    <h1>Two people, one studio.</h1>
+    <p>Tap a card for more on each of us.</p>
+  </div>
 
-      <div class="profile-card" tabindex="0" aria-expanded="false" aria-controls="profile2-details" id="profile2">
-        <img src="Images/FearlessBrine.jpg" alt="Jason COO" class="profile-image" />
-        <h2 class="profile-title">Chief Operating Officer</h2>
-        <div class="profile-detail">Name: <strong>Justin</strong></div>
-        <div class="profile-detail">Discord: <span class="discord-id">@fearlessbrine</span></div>
-        <p class="profile-detail">Co Founder Of MineTradeInteractive</p>
-        <div class="profile-expanded" id="profile2-details" role="region" aria-hidden="true">
-          <p>No Infomation</p>
-          <p>_</p>
-        </div>
+  <main class="team-container" style="text-align:initial;">
+    <div class="card profile-card" tabindex="0" aria-expanded="false" aria-controls="profile1-details" id="profile1">
+      <img src="Images/jake.png" alt="Jake, Chief Executive Officer" class="profile-image" />
+      <h2 class="profile-title">Chief Executive Officer</h2>
+      <div class="profile-detail">Name: <strong>Jake</strong></div>
+      <div class="profile-detail">Discord: <span class="discord-id">@iron_brine</span></div>
+      <p class="profile-detail">Chief Executive Officer of MineTrade Interactive.</p>
+      <div class="profile-expanded" id="profile1-details" role="region" aria-hidden="true">
+        <p>Jake is an entrepreneur and game developer, building with the studio since December 2024.</p>
+        <p>Passionate about gaming — he leads development on SquareScape.</p>
       </div>
-
-      <!-- Add more profiles as needed -->
     </div>
+
+    <div class="card profile-card" tabindex="0" aria-expanded="false" aria-controls="profile2-details" id="profile2">
+      <img src="Images/FearlessBrine.jpg" alt="Justin, Chief Operating Officer" class="profile-image" />
+      <h2 class="profile-title">Chief Operating Officer</h2>
+      <div class="profile-detail">Name: <strong>Justin</strong></div>
+      <div class="profile-detail">Discord: <span class="discord-id">@fearlessbrine</span></div>
+      <p class="profile-detail">Co-founder of MineTrade Interactive.</p>
+      <div class="profile-expanded" id="profile2-details" role="region" aria-hidden="true">
+        <p>Bio coming soon — check back later.</p>
+      </div>
+    </div>
+
+    <!-- Add more profiles as needed -->
   </main>
+
+  <footer class="site-footer">
+    MineTrade Interactive · <a href="https://discord.gg/CrzR7NTy3G" target="_blank" rel="noopener">Discord</a> · <a href="services.html">Terms &amp; Policies</a>
+  </footer>
 
   <script>
     const profiles = document.querySelectorAll('.profile-card');
@@ -193,7 +133,6 @@
         const expanded = profile.querySelector('.profile-expanded');
         const isOpen = expanded.classList.contains('open');
 
-        // Close all others
         profiles.forEach(p => {
           const exp = p.querySelector('.profile-expanded');
           exp.classList.remove('open');
@@ -205,7 +144,7 @@
           expanded.classList.add('open');
           profile.setAttribute('aria-expanded', 'true');
           expanded.setAttribute('aria-hidden', 'false');
-          expanded.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          expanded.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       });
 
