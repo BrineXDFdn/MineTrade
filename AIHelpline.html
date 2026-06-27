@@ -3,87 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Helpline - MineTrade Interactive</title>
-  <link rel="icon" href="../Images/favicon.ico" type="image/x-icon" />
+  <title>Helpline — MineTrade Interactive</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="Images/favicon.ico" type="image/x-icon" />
   <style>
-    body {
-      background-color: #121212;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #050505;
-      padding: 16px 24px;
-      border-bottom: 1px solid #222;
-      display: flex;
-      align-items: center;
-    }
-
-    .back-arrow {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #eee;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    .back-arrow:hover { color: #00ccff; }
-
-    .back-arrow svg {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
-    }
-
-    .back-arrow:hover svg { transform: translateX(-6px); }
+    .page-head { max-width: 760px; margin: 0 auto; padding: 48px 20px 6px; text-align: center; }
+    .page-head p { max-width: 480px; margin: 8px auto 0; font-size: 0.9rem; }
 
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 20px 70px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 22px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      color: #00ccff;
-    }
-
-    .presets {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
+    .presets { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
     .preset-btn {
-      background: #00ccff;
-      color: #000;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line-bright);
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
-
-    .preset-btn:hover { background: #33eaff; }
+    .preset-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 
     .chat-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #222;
-      border-radius: 8px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       padding: 20px;
       min-height: 200px;
       display: flex;
@@ -91,80 +46,51 @@
       gap: 12px;
     }
 
-    .chat-message {
-      padding: 10px 14px;
-      border-radius: 6px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
+    .chat-message { padding: 11px 15px; border-radius: var(--radius-sm); max-width: 80%; word-wrap: break-word; font-size: 0.92rem; }
 
-    .user-msg {
-      background: #00ccff22;
-      color: #00ccff;
-      align-self: flex-end;
-    }
+    .user-msg { background: var(--cyan-soft); color: var(--cyan); align-self: flex-end; }
+    .ai-msg { background: var(--panel-raised); color: var(--ink); align-self: flex-start; border: 1px solid var(--line); }
 
-    .ai-msg {
-      background: #222;
-      color: #eee;
-      align-self: flex-start;
-    }
-
-    .fallback-buttons {
-      display: none;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .fallback-buttons a {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      color: #000;
-      background: #00ccff;
-      transition: background 0.3s;
-    }
-
-    .fallback-buttons a:hover { background: #33eaff; }
+    .fallback-buttons { display: none; justify-content: center; gap: 14px; }
 
     @media (max-width: 600px) {
-      .preset-btn { padding: 8px 14px; font-size: 0.9rem; }
+      .preset-btn { padding: 8px 13px; font-size: 0.85rem; }
       .chat-box { min-height: 150px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <a href="index.html" class="back-arrow" aria-label="Back to Home">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-      </svg>
-      Back to Home
+  <header class="top-bar">
+    <a href="index.html" class="back-link" aria-label="Back to Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Home
     </a>
+    <a href="index.html" class="brand"><span class="mark">⛏</span>&nbsp;MineTrade<span class="dot">.</span></a>
+    <span style="width:60px;"></span>
   </header>
 
-  <main>
-    <h1>AI Helpline</h1>
+  <div class="page-head">
+    <span class="eyebrow">Helpline</span>
+    <h1>What do you need help with?</h1>
+    <p>Pick the closest match below. This is a guided directory, not a live AI — for anything it can't answer, Discord gets you a real person.</p>
+  </div>
 
+  <main>
     <div class="presets">
-    <button class="preset-btn" data-issue="Gameplay Question">Gameplay Question</button>
-    <button class="preset-btn" data-issue="Payment Problem">Payment Problem</button>
-    <button class="preset-btn" data-issue="Game Bug">Game Bug</button>
-    <button class="preset-btn" data-issue="Technical Help">Technical Help</button>
-    <button class="preset-btn" data-issue="Other Inquiry">Other Inquiry</button>
+      <button class="preset-btn" data-issue="Gameplay Question">Gameplay question</button>
+      <button class="preset-btn" data-issue="Payment Problem">Payment problem</button>
+      <button class="preset-btn" data-issue="Game Bug">Report a bug</button>
+      <button class="preset-btn" data-issue="Technical Help">Technical help</button>
+      <button class="preset-btn" data-issue="Other Inquiry">Something else</button>
     </div>
 
-
     <div class="chat-box" id="chat-box">
-      <div class="ai-msg">Hello! How can I assist you today? Choose an issue above.</div>
+      <div class="ai-msg chat-message">Hi! Choose what's going on above and I'll point you in the right direction.</div>
     </div>
 
     <div class="fallback-buttons" id="fallback-buttons">
-      <a href="https://discord.com/invite/CrzR7NTy3G" target="_blank">💬 Discord</a>
+      <a href="https://discord.com/invite/CrzR7NTy3G" target="_blank" rel="noopener" class="btn btn-discord">💬 Ask on Discord</a>
     </div>
   </main>
 
@@ -174,33 +100,28 @@
     const fallback = document.getElementById('fallback-buttons');
 
     const responses = {
-   "Gameplay Question": "For any gameplay questions, you can check tutorials, guides, or ask here. If you need more help, support is available via Discord.",
-   "Payment Problem": "Verify your payment method and check if the transaction was successful. If not resolved, contact us via Discord.",
-   "Game Bug": "We are sorry for the inconvenience. Please provide detailed steps of the bug. You can reach our support if further help is needed.",
-   "Technical Help": "Try restarting your game and updating to the latest version. If the problem continues, our support team is ready to help.",
-   "Other Inquiry": "For all other questions, our support team can assist you directly via Discord."
-   };
-
+      "Gameplay Question": "Check the in-game tutorial first — most mechanics are explained there. Still stuck? The team answers gameplay questions directly on Discord.",
+      "Payment Problem": "Double-check your payment method went through on your provider's end. If the charge succeeded but something's still wrong, reach us on Discord with your order details.",
+      "Game Bug": "Sorry about that. Note exactly what you were doing when it happened, then share it on Discord — the more detail, the faster it gets fixed.",
+      "Technical Help": "Start by restarting the game and confirming you're on the latest version. If that doesn't fix it, our team can dig in further on Discord.",
+      "Other Inquiry": "For anything else, the fastest way to reach a real person is Discord."
+    };
 
     presets.forEach(btn => {
       btn.addEventListener('click', () => {
         const issue = btn.getAttribute('data-issue');
 
-        // User message
         const userMsg = document.createElement('div');
         userMsg.classList.add('chat-message', 'user-msg');
         userMsg.textContent = issue;
         chatBox.appendChild(userMsg);
 
-        // AI response
         const aiMsg = document.createElement('div');
         aiMsg.classList.add('chat-message', 'ai-msg');
-        aiMsg.textContent = responses[issue] || "I'm not sure how to help with that.";
+        aiMsg.textContent = responses[issue] || "I'm not sure how to help with that one — try Discord.";
         chatBox.appendChild(aiMsg);
 
         chatBox.scrollTop = chatBox.scrollHeight;
-
-        // Show fallback buttons if user might need more help
         fallback.style.display = 'flex';
       });
     });
